@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class Day08_Actions2 extends TestBase {
     /*
     Create a class: Actions2
-Create test method : hoverOver() and test the following scenario:
+Create test method : hoverOver()(mouse u üzerinde bekletme) and test the following scenario:
 Given user is on the https://www.amazon.com/
 When use click on “Account” link
 Then verify the page title contains “Your Account”

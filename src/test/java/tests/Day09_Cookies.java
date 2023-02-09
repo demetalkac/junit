@@ -28,10 +28,11 @@ public class Day09_Cookies extends TestBase {
 //        -Go to amazon  and automate the tasks:
         driver.get("https://www.amazon.com");
 //        1. Find the total number of cookies
-        Set<Cookie> allCookies = driver.manage().getCookies();
+        Set<Cookie> allCookies = driver.manage().getCookies();  //<Cookie> 'i "selenium"dan import ediyoruz.
         int numOfCookies = allCookies.size();
         System.out.println("Number Of Cookies : "+numOfCookies);//Mine is 7
 //        2. Print all the cookies
+//        allCookies.stream().forEach(t-> System.out.println(t.getName())); //lambda ile yapımı
         for (Cookie eachCookie : allCookies){
             System.out.println("Cookie ==>>> "+eachCookie);
             System.out.println("Cookie Value ===>>> "+eachCookie.getValue());
@@ -41,9 +42,10 @@ public class Day09_Cookies extends TestBase {
         System.out.println("Cookie Named : "+driver.manage().getCookieNamed("i18n-prefs"));//entering cookie name and getting the entire cookie
 //                                                                                           çerez adını girme ve çerezin tamamını alma
 //        4. Add new cookie
-        Cookie cookie = new Cookie("my-fav-cookie","apple-pie");
-        driver.manage().addCookie(cookie);
+        Cookie cookie = new Cookie("my-fav-cookie","apple-pie"); //cookie olusturduk
+        driver.manage().addCookie(cookie); //sayfaya yeni cookie ekledik
         Thread.sleep(2000);
+//        System.out.println("Yeni Cookie Sayısı"+driver.manage().getCookies().size()); //cookie ekledikten sonra yeni sayıyı bu sekildede gorebiliriz (yeni bir "set<cookie>" konteynerina koymadan da)
         Set<Cookie> newCookies = driver.manage().getCookies();
         System.out.println("New Number Of Cookie ===>>> "+newCookies.size());//1 more than original number of cookie-Orijinal çerez sayısından 1 fazla
 //        5. Delete cookie by name

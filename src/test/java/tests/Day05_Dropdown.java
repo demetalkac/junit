@@ -14,6 +14,12 @@ import java.time.Duration;
 import java.util.List;
 
 public class Day05_Dropdown {
+    /*
+    NOT: * developerlar <select> tag'i ni Dropdown'ları (html kodları icinde) yazmak icin kullanırlar.
+    *<select> taginin altında da <option> tagleri yeralır.
+    *select clasını  dropdownları handle ederken kullanacagız sadece
+     *Bazı dropdownlar da tek sey secilirken bazen bircok secenegi isaretleyebiliriz.
+     */
     WebDriver driver;
     @Before
     public void setUp(){
@@ -75,6 +81,7 @@ public class Day05_Dropdown {
 //            getText() returns the TEXT of the webelements as STRING
             System.out.println(eachOption.getText());
         }
+       // allOptions.stream().forEach(t->System.out.println(t.getText())); -->lambda ile kullanımı
 //    5. Verify the dropdown has Option 2 text
         boolean isOption2Exist=false;
         for (WebElement eachOption : allOptions){
@@ -118,6 +125,10 @@ public void printFirstSelectedOptionTest(){
         to interact with dropdown elements.
     -How do you select dropdown elements?
         ---We actually have 3 options to select a dropdown(index,value,visible text)
+     -Tum dropdown seceneclerini nasıl print ederiz?
+        ---Tum dropdown elementlerini getOptions() methodu ile list'e koyarız sonra secenekleri loop ile yazdırabilirz
+     -Bir secenegin secili oldugunu otomate etmek icin ne yapılır?
+        ---  getFirstSelectedOption() secili olan secenegi return eder
      */
 
 

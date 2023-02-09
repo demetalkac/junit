@@ -1,4 +1,4 @@
-package tests;
+package my_notes;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
@@ -21,12 +21,12 @@ public class Methodlar {
         //3- driver.getCurrentUrl() -->icinde oldugu sayfanın URL'ini dondurur
         System.out.println(driver.getCurrentUrl()); // https://www.amazon.com/
 
-        //4- driver.getPageSource()-->icinde oldugu sayfanın kaynak kodlarını dondurur
+        //4- driver.getPageSource()-->icinde oldugu sayfanın kaynak kodlarını(html codlarını) dondurur
         System.out.println(driver.getPageSource());// arka planda calısan sayfakodlarını yazdırır
 
-        //5- driver.getWindowHandle()-->icinde oldugu sayfanın UNIQUE hash kodunu dondurur
+        //5- driver.getWindowHandle()-->icinde oldugu sayfanın UNIQUE hash kodunu verir
         System.out.println(driver.getWindowHandle()); //CDwindow-FTJKLSKJSIYERJM5749WFJKNFJ57
-                                                      //BU GELEN KOD HER DEFASINDA FARKLI GELIR
+        //BU GELEN KOD HER DEFASINDA FARKLI GELIR.Biz bu hash degerlerini bir Stringe atayıp pencereler arası gecis yapabilirz
 
         //6-driver.getWindowHandles() -->driver calısırken acılan tum sayfaların UNIQUE hash kodunu getırır
 
@@ -58,12 +58,12 @@ public class Methodlar {
 
      //                ------------"driver.manage"  Methodları --------------
 
-         //1- driver.manage().window() methodları
-         //1a-driver.manage().window().getSize(); --> icinde oldugu sayfanın pixel olarak ölculerini dondurur
+          //1- driver.manage().window() methodları
+         //1a-driver.manage().window().getSize(); --> icinde oldugu sayfanın pixel olarak ölculerini dondurur, yani sayfanın boyutlarını verir
         System.out.println(driver.manage().window().getSize()); //(1050,832) pixel
         System.out.println(driver.manage().window().getSize().height); //832 (yukseklıkve en ayarlaması ıcınde method var)
 
-        //1b- driver.manage().window().getPosition() --> icinde oldugu sayfanın pixel olarak konumunu dondurur
+        //1b- driver.manage().window().getPosition() --> icinde oldugu sayfanın pixel olarak konumunu dondurur,yani sayfanın konumunu verir
         // selenium driver methodları bize sayfanın sol-alt kosesinden baslar acılan sayfanın ,saga ve yukarıya dogru sayfanın ne kadar pixel oldugunu verır
 
         System.out.println(driver.manage().window().getPosition() ); //ornegin (10, 10)
@@ -133,12 +133,24 @@ public class Methodlar {
         // sendKeys() --> Arama kutusuna "Nutella" yazısını gonderır.Yani bu method istedigimiz elemente istedigimiz yazıyı gonderir
         elemetId.sendKeys("Nutella");
 
-        // elemetId.submit(); --> Enter tusuna basmıs gibi aramayı baslatir, yani "enter" gorevi gorur.
+        // elemetId.submit(); -->Web element ile islem yaparken Enter tusuna basmıs gibi aramayı baslatir, yani "enter" gorevi gorur.
         elemetId.submit();
+
+        //webElement.sentKeys("metin" + Keys.ENTER); İSTEDİGİMİZ METNİ YOLLAYIP,SONRA ENTER'A BASAR
 
         // getText()-->arama cubuguna yazılan yazıyı bize dondurur.
         WebElement sonucYazısıEl =driver.findElement(By.xpath("//div[@class='a-section ......']"));
         System.out.println(sonucYazısıEl.getText()); //Sonuc yazısı webElementi uzerindeki yazıyı bize dondurur.
+
+        //webElement.getAttribute("Att.ismi");-->ismi girilen attrubute'un degerini getirir
+
+        //webElement.getTagName(); web elementinin tag ismini getirir
+
+        //webElement.isEnable(); Web elementi erisilebilir ise true yoksa false doner
+
+        //webElement.isDisplayed(); Web elementi gorunur ise true yoksa false doner
+
+        //webElement.isSelected(); Web elementi secili ise true yoksa false doner
 
 
 

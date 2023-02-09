@@ -10,7 +10,7 @@ import utilities.TestBase;
 public class Day08_Actions1  extends TestBase {
     /*
     Create a class: Actions1
-    Create a test method : contextClickMethod() and test the following scenario:
+    Create a test method : contextClickMethod()(right click) and test the following scenario:
     Given user is on the https://the-internet.herokuapp.com/context_menu
     When use Right clicks on the box
     Then verify the alert message is “You selected a context menu”
@@ -28,6 +28,7 @@ public class Day08_Actions1  extends TestBase {
 //        3. use actions object and appropriate function to right click(Use actions object with proper method)-sağ tıklamak için eylemler nesnesini ve uygun işlevi kullanın
         actions.contextClick(box).perform();
 //        Then verify the alert message is “You selected a context menu”
+//       Assert.assertEquals("You selected a context menu",driver.switchTo().alert().getText()); //object olusturmadan yapmak daha iyi,eger "wait" gerektiren bir durum yoksa
         String text = driver.switchTo().alert().getText();
         Assert.assertEquals("You selected a context menu",text);
 

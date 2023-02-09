@@ -25,10 +25,10 @@ public class Day09_Actions4 extends TestBase {
         WebElement sourch = driver.findElement(By.id("draggable"));
         WebElement target = driver.findElement(By.id("droppable"));
 
-//        user Actions class to move source into target-kaynağı hedefe taşımak için kullanıcı Actions sınıfı
+//        user Actions class to move source into target--kaynağı hedefe taşımak için kullanıcı Actions sınıfı
        Actions actions = new Actions(driver);
        actions.dragAndDrop(sourch,target).perform();
-
+// NOTE: dragAndDrop() methodu 2 parameter kullanılır,birincisini(source;kaynag)ı ikincisine(target;hedef)e tasır,yani surukleme islemi yapar.
     }
     /*
     When test fails:
@@ -49,11 +49,15 @@ public class Day09_Actions4 extends TestBase {
 //        user Actions class to move source into target
        Actions actions = new Actions(driver);
        actions
-               .clickAndHold(source)
-               .moveToElement(target)
+               .clickAndHold(source) //clickAndHold() methodu kaynagı tutar
+               .moveToElement(target)//moveToElement() methodu hedefe koyar
+               .release() //kaynagı(sourch)'ı "bırak" anlamındadır.
                .build()
                .perform();//holding the source and moving into the target
 
+// NOTE1 : .build() :buildden onceki methodların iliskisini kur,guclendir anlamınd
+// Note2 : perform(); islemi gerceklestir
+// Note3 :  release() //kaynagı(sourch)'ı "bırak" anlamındadır.
    }
    @Test
     public void moveByOffsetTest(){
@@ -71,7 +75,7 @@ public class Day09_Actions4 extends TestBase {
               moveByOffset(160,30).
               build().
               perform();
-
+// moveByOffset() methodunun parametreleri koordinat vermemiz icin ise yarar,yanı elementi koymak istedigimiz yerin koordinatlarını yazarız parantezine.
    }
 
     @Test

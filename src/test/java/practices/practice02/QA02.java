@@ -53,6 +53,8 @@ public class QA02 extends TestBase {
         driver.switchTo().defaultContent();
 
         //Fill the form-formu doldur
+        //hepsinin tag+i input oldugu icin tek tek degilde hepsini bir liste atıp.sonra bosluklara yazacaklarımı Array
+        // liste donusturerek for ile ArrayList deki elementleri indeksine gore al ve Webelementinin indexine gore gonderdik.
         List<WebElement> allInputs = driver.findElements(By.xpath("input"));
         List<String> allWords = new ArrayList<>(Arrays.asList("This","iFrame","example","looks","very","funny","does", "not", "it","?","?"));
 

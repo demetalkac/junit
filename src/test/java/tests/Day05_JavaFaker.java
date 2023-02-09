@@ -21,7 +21,7 @@ public class Day05_JavaFaker {
     */
     @Test
     public void javaFakerTest(){
-//        1. Create teh Faker object
+//        1. Create the Faker object
         Faker faker = new Faker();
 //        2. Now that we have faker object we can generate the fake data
 //        generating username

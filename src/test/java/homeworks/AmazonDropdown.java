@@ -31,7 +31,9 @@ public class AmazonDropdown {
     BONUS: Assert if the dropdown is in Alphabetical Order
 
      */
+
      WebDriver driver;
+
   @Before
     public void setUp(){
     WebDriverManager.chromedriver().setup();
@@ -45,31 +47,53 @@ public class AmazonDropdown {
       driver.get("https://www.amazon.com/");
 
 //      Find the element of the dropdown element. HINT: By.id(“searchDropdownBox")
-     WebElement drobDown = driver.findElement(By.id("searchDropdownBox"));
-     Select select =new Select(drobDown);
+      WebElement dropdown = driver.findElement(By.xpath("//select[@aria-describedby='searchDropdownDescription']"));
+      dropdown.click();
+
+      Select options = new Select(dropdown);
 
 //      Print the first selected option and assert if it equals “All Departments”.If it fails, then comment that code out and continue rest of the test case.
-     String firstOption =select.getFirstSelectedOption().getText();
-     Assert.assertEquals("All Departments",firstOption);
+      Assert.assertEquals("All Departments",options.getFirstSelectedOption().getText());
 
 
-//      Select the 4th option by index (index of 3) and assert if the name is “Amazon Devices”.(after you select you need to use get first selected option method). If it fails, then comment that code out and continue rest of the test case.
-  //  select.selectByIndex(3);
-  //  String fourthOption =select.getFirstSelectedOption().getText();
-  //  Assert.assertEquals("Amazon Devices",fourthOption);
+
+//        Select the 3rd option by index (index of 2) and assert if the name is “Amazon Devices”.(after you
+//        select you to need to use the get first selected option method)
+      options.selectByIndex(2);
+
+
+ //     Assert.assertEquals(options.getFirstSelectedOption().getText(),"Amazon Devices");
 
 
 //      Print all of the dropdown options-getOptions(); method returns the List<WebElement>. Using loop, print all options.
-    List<WebElement> allOption = select.getOptions();
-    for (WebElement w: allOption){
-      System.out.println("w = " + w.getText());
-    }
+      List<WebElement> allOptions =options.getOptions();
+      for (WebElement eachOption:allOptions){
+          System.out.println(eachOption.getText());
+      }
 
 //      Print the the total number of options in the dropdown
-       int totalOptionNumber= allOption.size();
-    System.out.println("totalOptionNumber = " + totalOptionNumber);
+      System.out.println("the size is : " + allOptions.size());
 
 //      Assert if ‘Appliances’ is a drop down option. Print true if “Appliances” is an option. Print false otherwise.
+
+      boolean flag=false;
+      for (WebElement each : allOptions) {
+          if (each.getText().equals("Appliances")) {
+              flag=true;
+              break;
+          }
+      }
+      if (flag){
+          System.out.println("Appliances is an option TRUE");
+      }else{
+          System.out.println("Appliances is an option FALSE");
+      }
+
+
+
+
+
+/*bunu biz arkadaslar ile yapmıstık
      boolean flag = false;
      for (WebElement w: allOption){
        if (w.getText().contains("Appliances")){
@@ -77,6 +101,7 @@ public class AmazonDropdown {
        }
      }
     Assert.assertFalse(false);
+     /*
      /*
      diger cozumu:
       for (WebElement w: allOfDropdownOption){
@@ -90,6 +115,25 @@ public class AmazonDropdown {
       */
 
 //              BONUS: Assert if the dropdown is in Alphabetical Order
+
+      List<String> originalList  = new ArrayList<>();
+      List<String> sortedList  = new ArrayList<>();
+      for (WebElement each : allOptions) {
+          originalList.add(each.getText());
+          sortedList.add(each.getText());
+      }
+      Collections.sort(sortedList);
+
+      String result = originalList.equals(sortedList)
+              ? "The dropdown is in Alphabetical Order"
+              : "The dropdown is NOT in Alphabetical Order";
+
+      System.out.println("Result : "+result);
+      System.out.println("Original List : "+originalList);
+      System.out.println("Sorted List : "+sortedList);
+
+
+  /*
     List<String> options = new ArrayList<>();
     System.out.println("options = " + options);
     for (WebElement w : allOption){
@@ -104,8 +148,10 @@ public class AmazonDropdown {
     Assert.assertEquals(options, newOptions);
     //Assert.assertTrue(options.equals(newOptions));
     //Assert.assertFalse(!options.equals(newOptions));
+    /*
+   */
       /*
-      List<String> sortedList = listOfOptions.stream().sorted().collect(Collectors.toList());
+      List<String> sortedList = options.stream().sorted().collect(Collectors.toList());
         System.out.println("sortedList = " + sortedList);
         assertEquals("Dropdown is not in Alphabetical Order",listOfOptions,sortedList);
     }

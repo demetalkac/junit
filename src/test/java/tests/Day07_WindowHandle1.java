@@ -34,6 +34,7 @@ public class Day07_WindowHandle1 extends TestBase {
         Assert.assertEquals("The Internet", driver.getTitle());
 
 //        GETTING THE WINDOW 1 HANDLE(UNIQUE PAGE ID)
+
         String window1Handle = driver.getWindowHandle(); //RETURNS THE CURRENT WINDOW ID
         System.out.println(window1Handle);
 
@@ -41,14 +42,15 @@ public class Day07_WindowHandle1 extends TestBase {
         driver.findElement(By.linkText("Click Here")).click();
 
 
-
+        //ikinci sayfaya(window)a driver'in gecmesi gerekiyor ki 2.sayfanın baslıgını alabilelim
 //        WE DO TESTING IN A NEW WINDOW, SO WE MUST SWITCH TO THAT WINDOW-YENİ BİR PENCEREDE TEST YAPIYORUZ, O PENCEREYE GEÇMELİYİZ
 //        AS OF NOW 2 WINDOWS OPEN. USE getWindowHandles() TO GET BOTH IDs-ŞU ANDA 2 PENCERE AÇIKTIR. HER İKİ KİMLİK ALMAK İÇİN getWindowHandles() KULLANIN
-        Set<String> allWindowHandles = driver.getWindowHandles();
+        Set<String> allWindowHandles = driver.getWindowHandles(); //bunun icindde window1Handle ve window2Handle var
         System.out.println(allWindowHandles);
         for (String eachHandle : allWindowHandles){//looping through the windows-pencereler arasında döngü
             if (!eachHandle.equals(window1Handle)){//if we are not in windows 1 (means windows 2)-Windows 1'de değilsek (Windows 2 anlamına gelir)
                 driver.switchTo().window(eachHandle);//then switch the window 2--sonra pencere 2'ye değiştir
+                break;
             }
         }
 //        AT THIS POINT DRIVER IS SWITCHED TO WINDOWS 2-BU NOKTADA SÜRÜCÜ WINDOWS 2'YE GEÇTİRİLMİŞTİR
