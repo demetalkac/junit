@@ -40,7 +40,7 @@ printData(2,3); => prints data in 2nd row 3rd column
 //lambda:  allTableElements.forEach(t-> System.out.println(t.getText()));
         for (WebElement eachElement : allTableElements){
             System.out.println(eachElement.getText());
-            logger.info(eachElement.getText());
+//            logger.info(eachElement.getText());
         }
 //        We can get specific cell data(spesifik bir datayı almak istersek 2.yontem kullanmak daha uygun)
         System.out.println("5th DATA in the table "+allTableElements.get(5).getText());
