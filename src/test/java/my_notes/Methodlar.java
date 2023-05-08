@@ -24,6 +24,10 @@ public class Methodlar {
         //4- driver.getPageSource()-->icinde oldugu sayfanın kaynak kodlarını(html codlarını) dondurur
         System.out.println(driver.getPageSource());// arka planda calısan sayfakodlarını yazdırır
 
+       // NOT:Sayfanın HTML codlarını nasıl görebiliriz?
+        // - istedigimiz sayfaya browser ile baglan => sayfada bos olan(image'lerin istünde degil) da sag tıkla
+        // => "View Page Source"a tıklayınca html codlarını görürüz.
+
         //5- driver.getWindowHandle()-->icinde oldugu sayfanın UNIQUE hash kodunu verir
         System.out.println(driver.getWindowHandle()); //CDwindow-FTJKLSKJSIYERJM5749WFJKNFJ57
         //BU GELEN KOD HER DEFASINDA FARKLI GELIR.Biz bu hash degerlerini bir Stringe atayıp pencereler arası gecis yapabilirz

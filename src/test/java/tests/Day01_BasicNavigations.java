@@ -46,11 +46,12 @@ public class Day01_BasicNavigations {
         driver.get("https://www.walmart.com/");
 
 //        On the same class, Navigate to amazon home page https://www.amazon.com/
+       // ikinci page gecmek icin asagıdaki 2 yol da kullanabiliriz: river.get() ve driver.navigate().to()
       //  driver.get("https://www.amazon.com/"); //works
         driver.navigate().to("https://www.amazon.com/");
 
 //        Navigate back to walmart
-        driver.navigate().back(); //ılk drever a gitmek icin back() kullanıyoruz
+        driver.navigate().back(); //ılk driver a gitmek icin back() kullanıyoruz
 
 //        Navigate forward to amazon :
         driver.navigate().forward();
