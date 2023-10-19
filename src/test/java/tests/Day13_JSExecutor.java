@@ -15,6 +15,23 @@ public class Day13_JSExecutor extends TestBase {
     (click, belirli bir elemente scroll yapma,type,input^daki degerleri okuma...)
     -Javascript HTML kodlarına direk erisip yönetebilen bir script dili oldugundan bize kolaylık saglar.
 
+         1. create js executor object ve "JavascriptExecutor"ı "driver"a cast yaptık aralarındaki iliskiden dolayı(interfase)
+    JavascriptExecutor js =(JavascriptExecutor)driver;
+
+      2. Kullaacagımız Webelementi'in locate et:
+      driver.findElement(By.xpath("//*[.='we offer']")));
+      3.Yapmak istedigin islemi js.executeScript'unu kullan.İcine parametre olarak ilgili script ve webelement'i yaz
+      js.executeScript("arguments[0].scrollIntoView(true);
+      ==>  js.executeScript("arguments[0].scrollIntoView(true);",driver.findElement(By.xpath("//*[.='we offer']")));
+
+    -  executeScript() methodu   JavascriptExecutor classından gelir.2 parametresi var.İlki "javaScript kodu" nu ikinci yazılan(webelement)e uygular.Run yapmada ise yarar.
+    - scrollIntoView(true) methodu belirli bir elemente scroll(kaydırmak) yapmak icin kullanilir.
+    - arguments[0] parandezdeki indexe yazılana gore elementi verir "scrollIntoView(true)"dan sonra 2 parametre yazdıysak;
+    - "arguments[0]" ilkini verir,"arguments[1]" ise ikincisini verir  , fakat genelde"0" yazılır cunku bir element bulmada
+      kullanılır. Baska bulmak istedigimiz element icin tekrardan "js.executeScript(...) olusturuyoruz.Bundan dolayı da reusable methot olusturup onu kullnmak daha mantıklı.
+    -"arguments" parametre demektir burda.
+   -  JavascriptExecutor classı seleniumdan gelir.
+
     When user goes to home page
     And scroll on the WE OFFER element
     And scroll on the search box element

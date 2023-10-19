@@ -1,6 +1,6 @@
 package tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -10,9 +10,9 @@ public class Day02_GetPageSource {
                              getPageSource()
       //getPageSource() returns page source code as a string-sayfa kaynak kodunu bir string olarak döndürür
       //We might use this to verify if a certain text exist in the entire page
-      - Bunu, belirli bir metnin tüm sayfada var olup olmadığını doğrulamak için kullanabiliriz
+      - Bunu sayfanın tamamında belirli bir elementin mevcut olup olmadığını doğrulamak için kullanabiliriz
       //Note that pageSource is not used a lot to do assertions
-      - pageSource'un onaylama yapmak için pek kullanılmadığına dikkat edin
+      - pageSource'un assertion yapmak için pek kullanılmadığına dikkat edin
       //Because it is too general and can lead false result
       - Çünkü çok genel ve yanlış sonuçlara yol açabilir
 
@@ -22,7 +22,7 @@ public class Day02_GetPageSource {
      */
     public static void main(String[] args) {
         //System.setProperty("webdriver.chrome.driver", "./src/resources/drivers/chromedriver.exe");
-        WebDriverManager.chromedriver().setup();
+       // WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         //Test if amazon contains “Registry” on the homepage

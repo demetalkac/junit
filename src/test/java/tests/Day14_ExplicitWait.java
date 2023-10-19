@@ -16,11 +16,13 @@ public class Day14_ExplicitWait extends TestBase {
     public void explicitWaitTest(){
 
       /*
+       ımplicitly waiti driver.manage().timeouts() icinde kullanıyoruz(@Before methodun icinde).Genel kullanılır.
        explicitWait daha fazla bekleme süresi gerektiren webelementleri icin kullanılır.ımplicitly waitin cozemedigi
-       zamanlarda kullanırız.
+       zamanlarda kullanırız.Daha local yerlerde kullanırız.
+       note:HTML kodlarındagizlenen webelementlerini genelde; style="display:none;" olarak kodlarlar veya style="display:block;" html kodları ile yaparlar.
         *Wait object olustururuz:
        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-       *Olusturdugumuz obje ile "WebDriverWait" classından "until()"methodu şle birlilkte
+       *Olusturdugumuz obje ile "WebDriverWait" classından "until()"methodu ile birlilkte
        "ExpectedConditions classı"ını kullanabiliriz:
        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(" ")));
        *yukardaki ile explicitWait webelementini bulmak icin bekler hem de bulur, yani "findElement(By...)"in isini de yapar.

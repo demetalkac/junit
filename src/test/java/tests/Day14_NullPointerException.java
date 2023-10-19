@@ -7,6 +7,7 @@ import utilities.TestBase;
 
 public class Day14_NullPointerException extends TestBase {
     //    DECLARED BUT NEVER INSTANTIALTED-BİLDİRİLDİ AMA HİÇ BAŞLATILMADI
+    // INSTANTIALTED etmemek demek :"Faker faker;"  seklinde classta yazmak demektir.Normalde "Faker faker = new Facer();" seklinde olması gerekiyordu
     WebDriver driver;
     Faker faker; // Faker faker = new Facer(); seklinde olması gerekiyordu
     @Test

@@ -1,6 +1,6 @@
 package my_notes;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -16,7 +16,7 @@ public class N06_DropdownReusubleMethod {
     WebDriver driver;
     @Before
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
+       // WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));//15 seconds wait in case needed
         driver.manage().window().maximize();

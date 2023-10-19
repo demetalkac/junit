@@ -12,6 +12,30 @@ import java.util.Map;
 public class Day11_ReadExcel {
 
     /*
+      EXCEL
+   1- excel dosyasını koymak icin intellj'de package olustur:
+      test => java ,new package:resources
+   2- exel dosyasını projeye yükle:
+      Bilgisayarındaki exel dosyasını drag and drop (dosyayı tut ve bırak) resources package'nın icine.=>"refactor" bas
+   3- Intellj'e yuklenen excel dosyasının path'ini kopyala String icine koy:
+     (Store the path of the  file in a string))
+        String path = "./src/test/java/resources/Capitals.xlsx";
+//        ".\\src\\test\\java\\resources\\Capitals.xlsx" //WINDOWS
+  4-  "workbook>worksheet>row>cell"
+  5-     Open the file - Dosyayı ac
+        FileInputStream fileInputStream = new FileInputStream(path);
+  6-      Workbook workbook = WorkbookFactory.create(fileInputStream);
+  7-      Sheet sheet1 = workbook.getSheet("Sheet1");
+  8-      Row row1 = sheet1.getRow(0);
+  9-      Cell cell1 = row1.getCell(0);
+  10-     We can convert the cell data to string
+           String cell1Data = cell1.toString();
+           System.out.println(cell1Data);
+  11-     Find the number of row
+      *  int numberOfRow = sheet1.getLastRowNum()+1;//index starts at 0, so add 1 to find total number of row
+         System.out.println("ROW COUNT : "+numberOfRow); //11
+      *  int numberOfData = sheet1.getPhysicalNumberOfRows();//getPhysicalNumberOfRows(); index starts at 1. Returns the number of row that has a DATA
+ ***
     FileInputStream fileInputStream = new FileInputStream(path); =>File javadan geldigi icin obje olustururken "new" kullanıyoruz
     FAKAT; Workbook workbook = WorkbookFactory.create(fileInputStream);
            Sheet sheet1 = workbook.getSheet("Sheet1");
@@ -35,6 +59,7 @@ public class Day11_ReadExcel {
         Sheet sheet1 = workbook.getSheet("Sheet1");
 
 //        workbook.getSheetAt(0);//ALTERNATIVELY(indexs ile de alabiliriz sheet'i,bir tane sheetimiz oldugu icin "0"aldık)
+//  **Sheet i ismiyle veya indexine göre alabiliriz: getSheetAt():index , getSheet("Sheet1"):sheet ismi
 //        Go to first row
         Row row1 = sheet1.getRow(0);//index starts at 0. going to the first row
 

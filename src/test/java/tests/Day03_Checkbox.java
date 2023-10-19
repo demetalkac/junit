@@ -1,6 +1,6 @@
 package tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -29,7 +29,7 @@ public class Day03_Checkbox {
     @Before
     public void setUp(){
         //        user goes to http://a.testaddressbook.com/sign_in
-        WebDriverManager.chromedriver().setup();
+       // WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
 //        IMPLICIT WAIT
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));//15 seconds wait in case needed

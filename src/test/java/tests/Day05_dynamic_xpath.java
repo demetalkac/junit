@@ -1,6 +1,6 @@
 package tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,7 +16,7 @@ public class Day05_dynamic_xpath {
     WebDriver driver;
     @Before
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
+       // WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));//15 seconds wait in case needed
         driver.manage().window().maximize();

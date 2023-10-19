@@ -32,7 +32,7 @@ public class Day01_BasicNavigations {
 
 
        // step 1: set up
-       System.setProperty("webdriver.chrome.driver","./src/resources/drivers/chromedriver.exe");
+       //System.setProperty("webdriver.chrome.driver","./src/resources/drivers/chromedriver");
 
        //step 2: create
         WebDriver driver = new ChromeDriver();
@@ -46,7 +46,7 @@ public class Day01_BasicNavigations {
         driver.get("https://www.walmart.com/");
 
 //        On the same class, Navigate to amazon home page https://www.amazon.com/
-       // ikinci page gecmek icin asagıdaki 2 yol da kullanabiliriz: river.get() ve driver.navigate().to()
+       // ikinci page gecmek icin asagıdaki 2 yol da kullanabiliriz: driver.get() ve driver.navigate().to()
       //  driver.get("https://www.amazon.com/"); //works
         driver.navigate().to("https://www.amazon.com/");
 

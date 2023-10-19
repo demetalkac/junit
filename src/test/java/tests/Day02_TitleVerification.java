@@ -15,7 +15,7 @@ public class Day02_TitleVerification {
 
          */
 
-        System.setProperty("webdriver.chrome.driver", "./src/resources/drivers/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "./src/resources/drivers/chromedriver.exe");
 
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();

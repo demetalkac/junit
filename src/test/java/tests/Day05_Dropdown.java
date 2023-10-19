@@ -1,6 +1,6 @@
 package tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,7 +23,7 @@ public class Day05_Dropdown {
     WebDriver driver;
     @Before
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
+       // WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));//15 seconds wait in case needed
         driver.manage().window().maximize();
@@ -78,14 +78,14 @@ public class Day05_Dropdown {
 //        getOptions(); returns all of the dropdown options
         List<WebElement> allOptions = select.getOptions();
         for (WebElement eachOption : allOptions){
-//            getText() returns the TEXT of the webelements as STRING
+//            getText() returns the TEXT of the webelements as STRING. getText() methodu String return eder.
             System.out.println(eachOption.getText());
         }
        // allOptions.stream().forEach(t->System.out.println(t.getText())); -->lambda ile kullanımı
 //    5. Verify the dropdown has Option 2 text
-        boolean isOption2Exist=false;
+        boolean isOption2Exist=false; //2ç option secilmemis ise
         for (WebElement eachOption : allOptions){
-            if (eachOption.getText().equals("gadhstdhdrtyjh")){
+            if (eachOption.getText().equals("Option 2")){ //getText ile aldıgımız optionlardan Option 2'ye esit ise dogru olacak bu kodlarla
                 isOption2Exist=true;
             }
         }
@@ -100,6 +100,7 @@ public void printFirstSelectedOptionTest(){
     Select select = new Select(dropdown);
 //        printing the selected option
     System.out.println("Selected Option : "+select.getFirstSelectedOption().getText());
+ //getFirstSelectedOption() return webElement
 //        selecting a different option from the dropdown
     select.selectByIndex(2);
 //        printing the selected option

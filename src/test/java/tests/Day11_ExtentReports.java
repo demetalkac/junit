@@ -25,6 +25,7 @@ public class Day11_ExtentReports extends TestBase {
         //      Use reports
         //      Generate the report
      */
+ // Hatırlamamız gereken 3 class
     protected static ExtentReports extentReports;
     protected static ExtentHtmlReporter extentHtmlReporter;
     protected static ExtentTest extentTest; // "extentTest" yerine "logger" kelimesi de kullanılabiliyor bazen
@@ -38,6 +39,7 @@ public class Day11_ExtentReports extends TestBase {
 //        creating extent reports object for generating the Entire reports with configuration
         extentReports = new ExtentReports(); //bu objeckti kullanarak sirketle ilgili bilgileri giriyoruz.
 //        ***************
+//  ****   raporu customize etme:
 //        adding custom System Info -- sirkete ait ve sirkete göre eklenmesi istenen bilgileri burda koyabiliyoruz.
         extentReports.setSystemInfo("Test Environment", "Regression"); //setSystemInfo() bu method key-value gibi bilgi girebiliriz
         extentReports.setSystemInfo("Application", "TechProEd");
@@ -46,16 +48,16 @@ public class Day11_ExtentReports extends TestBase {
         extentReports.setSystemInfo("SQA", "John Fox");
         extentReports.setSystemInfo("Sprint Number","SP205");
 
-//        adding more custom config info -- ropor ismi ve dokuman ismi icin kullanıyoruz:extentHtmlReporter.config().
+// *** adding more custom config info -- extra ropor ismi ve dokuman ismi icin kullanıyoruz:extentHtmlReporter.config().
         extentHtmlReporter.config().setReportName("TechProEd home page");
         extentHtmlReporter.config().setDocumentTitle("TechProEd extent reports");
 //        ********************ustte rapor ayarları vardı ve bitti******************
-//        DONE WITH CONFIGURATION (attach Reporter)
+//        DONE WITH CONFIGURATION (attach Reporter) - raporu projeme ekliyorum:
         extentReports.attachReporter(extentHtmlReporter);
 //      SUMMARY: Extent Reports and Extent HTML Reporter is used to add custom information on the report and create the report in a PATH
 
 //        REPORT IS DONE. NOW CREATING EXTENT TEST TO LOG INFO IN THE TEST CASE
-//        Creating extent test objesi olustur
+//        Creating extent - test objesi olustur
 //               createTest()'in icine;       test ismini yazmak zorunlu   ,  acıklama(description) yazmak zorunlu degil
         extentTest = extentReports.createTest("My Extent Reporter", "Regression Test Report");
 
@@ -98,20 +100,20 @@ public void extentReportsTest2(){
   // genelde  extentTest."pass" ve "info" kullanılır, raporlamalarda.
 //        pass is used to mark the step as PASSED
     extentTest.pass("PASS");
-//        info is used to just give an information for that step
+//        info is used to just give an information for that step. ınfo bilgilendirme mesajı vermek icin kullanılır
     extentTest.info("INFO");
 //        fail is used to mark the step as FAILED
     extentTest.fail("FAILED");
 //        skip is used to mark the step as SKIPPED
     extentTest.skip("SKIPPED");
-//        warning is used to give working information
+//        warning is used to give working information. Warning uyarı demek
     extentTest.warning("WARNING");
 }
 
     @AfterClass
     public static void extentReportsTearDown(){
 //        generating the report
-        extentReports.flush(); //kullanılması zorunludur
+        extentReports.flush(); //kullanılması zorunludur.Raporun gözükmesi icin(test-output) ve kapatılması icin kullanılır.
     }
 
 }

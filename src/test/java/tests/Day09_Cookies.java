@@ -22,6 +22,10 @@ public class Day09_Cookies extends TestBase {
     It's a way for a website to remember you, your preferences, and your habits online.
     Çerezler, tarayıcılar tarafından oluşturulan geçici veriler/dosyalardır.
      Bir web sitesinin sizi, tercihlerinizi ve çevrimiçi alışkanlıklarınızı hatırlamasının bir yolu.
+
+    Cookies'leri  "driver.manage()." yani manage methodu ile alıyoruz.
+    getCookies() methodu ile tüm cookieleri alıyoruz.getCookies() " Set<Cookie>" return eder.
+
      */
     @Test
     public void cookieTest() throws InterruptedException {
@@ -34,10 +38,11 @@ public class Day09_Cookies extends TestBase {
 //        2. Print all the cookies
 //        allCookies.stream().forEach(t-> System.out.println(t.getName())); //lambda ile yapımı
         for (Cookie eachCookie : allCookies){
-            System.out.println("Cookie ==>>> "+eachCookie);
+            System.out.println("Cookie ==>>> "+eachCookie);  // tüm cookiesleri yazdırdk
             System.out.println("Cookie Value ===>>> "+eachCookie.getValue());
             System.out.println("Cookie Name ===>>> "+eachCookie.getName());
         }
+    //NOT: For ile cookiesleri aldıktan sonra cookies'lerin bazı özelliklerinide alabiliriz:getValue(),getName())...
 //        3. Get the cookies by their name-Çerezleri isimlerine göre alın
         System.out.println("Cookie Named : "+driver.manage().getCookieNamed("i18n-prefs"));//entering cookie name and getting the entire cookie
 //                                                                                           çerez adını girme ve çerezin tamamını alma

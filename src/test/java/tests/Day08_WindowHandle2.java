@@ -49,6 +49,8 @@ public class Day08_WindowHandle2 extends TestBase {
         String amazonTitle = driver.getTitle();
         Assert.assertTrue(amazonTitle.contains("Amazon"));
         String amazonHandle = driver.getWindowHandle();//getting window 2 id
+// NOT: "WindowType" ı "import org.openqa.selenium.WindowType;"dan import ediyoruz.
+
 //        open linkedin on a new window 3
         Thread.sleep(3000);
         driver.switchTo().newWindow(WindowType.WINDOW);//creates a new window and switches to that window automatically

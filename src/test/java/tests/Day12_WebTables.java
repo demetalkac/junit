@@ -20,6 +20,13 @@ Task 5 : Write a method that accepts 2 parameters
 Parameter 1 = row number
 Parameter 2 = column number
 printData(2,3); => prints data in 2nd row 3rd column
+
+1-table'u toplu almak icin: driver.findElement(By.xpath("//table[@id='table1']")).getText();
+2-Tablodaki dataları tek tek ,ayrı ayrı almak istersek: driver.findElements(By.xpath("//table[@id='table1']//td"));
+ bunu List icine koyup loop ile alabiliriz.
+ 3-tek tek row ları alır:driver.findElements(By.xpath("//table[@id='table1']//tr"));
+ bunu da List icine koyup loop ile alabiliriz.
+
      */
     private static Logger logger = (Logger) LogManager.getLogger(Day12_WebTables.class.getName());
     //(Logger) casting yaptık
@@ -35,7 +42,7 @@ printData(2,3); => prints data in 2nd row 3rd column
         String entireTable = driver.findElement(By.xpath("//table[@id='table1']")).getText();
         System.out.println(entireTable);
 
-        //2.way(her rowdaki bilgiyi daha rahat goruruz)
+        //2.way(her rowdaki bilgiyi daha rahat goruruz) dataları tek tek alırız bununla:
         List<WebElement> allTableElements = driver.findElements(By.xpath("//table[@id='table1']//td"));
 //lambda:  allTableElements.forEach(t-> System.out.println(t.getText()));
         for (WebElement eachElement : allTableElements){
@@ -48,7 +55,7 @@ printData(2,3); => prints data in 2nd row 3rd column
 
     @Test
     public void printRows(){
-        //        Task 2 : Print All Rows
+        //        Task 2 : Print All Rows: tek tek row ları alır:
         driver.get("https://the-internet.herokuapp.com/tables");
         List<WebElement> allRows = driver.findElements(By.xpath("//table[@id='table1']//tr"));
 //lambda:        allRows.forEach(t-> System.out.println(t.getText()));

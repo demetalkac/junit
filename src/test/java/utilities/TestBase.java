@@ -1,5 +1,5 @@
 package utilities;
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -21,11 +21,11 @@ import java.util.Date;
 import java.util.function.Function;
 
 public abstract class TestBase {
-    protected static WebDriver driver;
+    protected static WebDriver driver; // protected yaptık
 
     @Before
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
+      //  WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
@@ -63,9 +63,9 @@ public abstract class TestBase {
     }
 
     //    TAKE SCREENSHOT OF ENTIRE PAGE WITH THIS REUSABLE METHOD
-    public void takeScreenshotOfPage() {
+    public  void takeScreenshotOfPage() {
 //        1. Take screenshot using getScreenshotAs method and TakeScreenshot API-coming from selenium
-        File image = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File image = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE); //"File class" ını java io'dan import ediyoruz.
 
 //        2. Creating a PATH and dynamic name for the image
         String currentTime = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());//getting the current local date and time
@@ -75,7 +75,7 @@ public abstract class TestBase {
 
 //        3. Saving the IMAGE in the PATH
         try {
-            FileUtils.copyFile(image, new File(path));
+            FileUtils.copyFile(image, new File(path)); //"FileUtils classını" java io'dan import ediyoruz.
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -159,7 +159,7 @@ public abstract class TestBase {
    INTERVIEW QUESTION : What are the selenium methods that you use to type in an input?
     - sendKeys()
     - with javascript executor we can change the value of the input
-    -bu method sendKeys() methoduna bir alternatiftir gondermek istedigimiz metni elemente yazdırır.
+    -bu method sendKeys() methoduna bir alternatiftir, gondermek istedigimiz metni elemente yazdırır.
 
     NOT:setAttribute('value','" + text + "')", element); -> "setAttribute" kullanarak "value" attribute'ne gondermek
         istedigimiz yazıyı gonderebliliriz.
@@ -197,7 +197,7 @@ public abstract class TestBase {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         String value = js.executeScript("return document.getElementById('" + idOfElement + "').value").toString();
         System.out.println(value);
-//   ID unique olmadugında CSS kullanılbilir:
+//  input elementindeki degerleri almak icin, ID unique olmadıgında CSS kullanılbilir:
 //    NOT: document.querySelector("p").value; ->  TAG KULLANILABILIR
 //    NOT: document.querySelector(".example").value; -> CSS DEGERI KULLANILABILIR
 //    NOT: document.querySelector("#example").value; -> CSS DEGERI KULLANILABILIR

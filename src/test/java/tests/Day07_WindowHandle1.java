@@ -33,7 +33,7 @@ public class Day07_WindowHandle1 extends TestBase {
 //        Then user verifies the title of the page is “The Internet”
         Assert.assertEquals("The Internet", driver.getTitle());
 
-//        GETTING THE WINDOW 1 HANDLE(UNIQUE PAGE ID)
+//        GETTING THE WINDOW 1 HANDLE(UNIQUE PAGE ID- her windowun bir ıd si var, getWindowHandle() ile de onun ıd sini alıyoruz)
 
         String window1Handle = driver.getWindowHandle(); //RETURNS THE CURRENT WINDOW ID
         System.out.println(window1Handle);

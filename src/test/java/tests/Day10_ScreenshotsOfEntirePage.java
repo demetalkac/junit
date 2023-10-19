@@ -1,11 +1,20 @@
 package tests;
 
+
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import utilities.TestBase;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Day10_ScreenshotsOfEntirePage extends TestBase {
     /*
@@ -44,11 +53,49 @@ public class Day10_ScreenshotsOfEntirePage extends TestBase {
         takeScreenshotOfPage();
     }
 
+    @Test
+    public  void tamEkranScreenshotTest() throws IOException {
+  //Techpro education a git ve Sayfanin goruntusunu al. -“QA” aramasi yap
+  //Acilen sayfanin metnini test et ve ekran goruntusu al: “Search Results for: qa”
+        driver.get("https://www.techproeducation.com");
+ //1- Ekran goruntusunu getScreenshotAs() ile alıp File olarak olusturalm
+ //   getScreenshotAs() methodu return "File"
+ //  OutputType.FILE =>DOSYA TİPİdir. Dosyayı direk resim olarak alamıyoruz o nedenle "FILE" sectik burda.
+
+   File goruntu = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);  //Bununla screenshot ı aldık
+//2- Almıs oldugum ekran goruntusunu belirledigim bir PATH e kaydet. dir=directory(dosya)
+        String currentDate = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date()); //currentDate olusturmamızın sebebi aldıgımız her ekran göruntusunu ayrı vakitlerde gösterdikki daha dinamik olsun kodumuz.
+     String path = System.getProperty("user.dir")+"/test-output/EkranGoruntuleri/"+currentDate+"image.png";
+     File hedef = new File(path);
+//3- goruntu ile dosyayı birlestirip kaydet
+        FileUtils.copyFile(goruntu,hedef);
+
+/*ALTERNATIF OLARAK TUM ADIMLARI TEK SEFERDE DEGISKEN KULLANMADAN YAZABILIRIZ:
+  FileUtils.copyFile(((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE),
+   new File(System.getProperty("user.dir")+"/test-output/EkranGoruntuleri/image.png"));
+*/
+   //     -“QA” aramasi yap
+   driver.findElement(By.xpath("//input[@type='search']")).sendKeys("QA"+ Keys.ENTER);
+waitFor(3);
+  String expected ="Search Results for: QA";
+  String text = driver.findElement(By.xpath("//*contains(text(),'Search Rearch Results for')]")).getText();
+  Assert.assertTrue(expected.contains(text));
+
+        // Reusable method yardımıyla ekran goruntusu alma:
+        takeScreenshotOfPage();
+
+    }
+
+
+
+
+
+
 }
 /*
-  *Ekran goruntusu:
-  * getScreenshotAs() methodu ile alınır. Bu method Seleniumdan gelir
-  * getScreenshotAs() methodu TekaScreenshot api'ndan gelir
-  * 2 farklı ekran goruntusu alınabilir:tum sayfa,ozel bir elementin screenshotı alınabiliyor.ikincisi selenium 4 den itibaren var
-
+  Seleniumda tum ekran goruntusunasıl alınır?
+  *Seleniumdan gelen "getScreenshotAs()" methodu ile alınır.
+  * Seleniumdaki TakeScreenshot api'dan gelen "getScreenshotAs()" methodu kullanılır.
+  * 2 farklı ekran goruntusu alınabilir:tum sayfa,ozel bir elementin screenshotı alınabiliyor.
+       ikincisi Selenium 4 ile spesifik bir elemanın screenshot'ını alabiliyoruz.
  */

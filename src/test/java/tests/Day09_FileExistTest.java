@@ -26,8 +26,9 @@ public class Day09_FileExistTest {
 
 //        Pick a file on your desktop
 //        And verify if that file exist on your computer or not
-        String pathOfFile = userHOME +"\\Desktop\\logo.jpeg"; //WRITING THE PATH DYNAMICALLY SO TIS PATH CAN WORKS ON OTHER LAPTOPS
+        String pathOfFile = userHOME +"/Desktop/logo.jpeg"; //WRITING THE PATH DYNAMICALLY SO TIS PATH CAN WORKS ON OTHER LAPTOPS
 //                                                            DİĞER DİZÜSTÜ BİLGİSAYARLARDA ÇALIŞABİLMEK İÇİN YOLU DİNAMİK OLARAK YAZMAK
+//        String pathOfFile = userHOME +"\\Desktop\\logo.jpeg"; WINDOWS
         boolean isExist = Files.exists(Paths.get(pathOfFile));//returns TRUE if file exists. FALSE if file doesn't exists
         assertTrue(isExist); //Passes if file exist, Fails if files doesnt exists
 

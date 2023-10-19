@@ -15,10 +15,27 @@ When user selects an image from the desktop
 And click on the upload button
 Then verify the File Uploaded!  Message displayed
 ---------
-   1-  "choose file"(dosya sec),locate'nı al,-->.id("file-upload"
-   2- tıkla ve yuklemek istedigin dosyayı sec kendi bilgisayarımdan-->sectigim dosyanın path'ini kopyala: String userHOME=System.getProperty("user.home");
-                                                                                                          String pathOfFile = userHOME +"\\Desktop\\logo.jpeg";
-   3- "upload" ın locate ni al -->id("file-submit")
+       FileUpload -Dosya Yükleme
+   1-  url'e git:
+   driver.get("https://the-internet.herokuapp.com/upload");
+   2- Sayfada yükleyecegimiz yerin locate'i al-locate choose file and click choose a file:
+   "choose file"(dosya sec),locate'nı al,-->.id("file-upload"
+   3- tıkla ve yuklemek istedigin dosyayı sec kendi bilgisayarımdan- select a file from your computer
+    -->sectigim dosyanın path'ini kopyala:
+    String userHOME=System.getProperty("user.home");
+    String pathOfFile = userHOME +"\\Desktop\\logo.jpeg";
+
+   4- Sending the path of the file that I want to upload.
+     we can use send keys cause the input type file combination
+        chooseAFileButton.sendKeys(pathOfFile);
+
+   5- upload yaptıktan sonra upload olduguna dagir, acılan yerdeki bir elementin locate'i al.-then locate and click uploated
+      "upload" ın locate ni al -->id("file-submit")
+      driver.findElement(By.id("file-submit")).click();
+
+   6- Asserting
+      boolean isEqual =driver.findElement(By.xpath("//H3")).getText().equals("File Uploaded!");
+      Assert.assertTrue(isEqual);
      */
     @Test
     public void fileUploadTest(){

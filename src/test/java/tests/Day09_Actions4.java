@@ -49,7 +49,7 @@ public class Day09_Actions4 extends TestBase {
 //        user Actions class to move source into target
        Actions actions = new Actions(driver);
        actions
-               .clickAndHold(source) //clickAndHold() methodu kaynagı tutar
+               .clickAndHold(source) //clickAndHold() methodu, kaynagı(tasımak istedigimiz element) tutar
                .moveToElement(target)//moveToElement() methodu hedefe koyar
                .release() //kaynagı(sourch)'ı "bırak" anlamındadır.
                .build()

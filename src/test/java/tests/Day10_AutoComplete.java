@@ -15,8 +15,15 @@ public class Day10_AutoComplete extends TestBase {
     Then verify the result contains ‘United Kingdom’
     --
     xpath("//div[@id='myCountryautocomplete-list']//div[.='United Kingdom']"))--> “uni” yazınca birden fazla secenek
-    cıkıyor.xpath'ini alırken genel id kullanıyoruz,sonra altında div'ler ile sıralana ulkeler icinden hangisini
+    cıkıyor.xpath'ini alırken genel id kullanıyoruz,sonra altında div'ler ile sıralanan ulkeler icinden hangisini
     sececegimizi belirtmek icin //div[.='United Kingdom']") bunu kullanarak ulke ismini yazıyoruz value kısmına.
+   --
+   Auto completw için: url git
+    => locate’ini aldığın kutuya sendKeys() ile aramak istediğin yazıyı gönder.
+    => ve o sekilde locate al, birçok seçenek oluğu için child div’ler olacak.
+    O nedenle biz neyi arayacak isek onun bulunduğu div’i index ile değil(çünkü eklemcıkarma
+    olabilir) value’sunu al. Ve click yap:
+    driver.findElement(By.xpath("//div[@id='myCountryautocomplete-list']//div[.='United Kingdom']")).click();
 
      */
     @Test

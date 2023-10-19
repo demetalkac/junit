@@ -47,7 +47,9 @@ public class Day03_Assertions {
         Assert.assertFalse("Java".contains("j")); //assertFalse & "Java".contains("j")==>false --true,pass
 
  //        HARD ASSERTIOS: TEST EXECUTION STOPS IF ONE THE ASSERTION FAILS. THIS IS CALLED HARD ASSERTIOS
-        //BİR ASSERTION BAŞARISIZ OLURSA TEST YÜRÜTME DURUR. BUNA HARD ASSERTIOS Denir
+        //BİR ASSERTION BAŞARISIZ OLURSA TEST YÜRÜTME DURUR. Yani steplerden sadece biri fail oldugu zaman test calısması
+        // durur,alttaki steplere gecmez. BUNA HARD ASSERTIOS Denir
+
 //        VERIFICATION: TEST EXECUTION CONTINUES EVEN IF TEST VERRIFICATION FAILS. VERIFICATION MEANS LIKE IF STATEMENT
         // TEST DOĞRULAMA BAŞARISIZ OLSA BİLE TEST YÜRÜTME DEVAM EDER. DOĞRULAMA, IF BEYANI GİBİ DEMEKTİR
 
@@ -59,8 +61,8 @@ public class Day03_Assertions {
 //        NOTE: TestNG has soft assertion as well. We will learn it in TestNG
         // NOT: TestNG'nin de soft assertion vardır. TestNG'de öğreneceğiz
 
-/*
-String name = "John";
+ /*
+        String name = "John";
         assertTrue(name.contains("J"));
         assertFalse(name.contains("A"));
  */

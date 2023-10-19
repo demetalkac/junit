@@ -1,6 +1,6 @@
 package tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -43,10 +43,10 @@ public class Day03_Locators {
     @Before
     public void setUp(){
 //     user goes to https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
-        WebDriverManager.chromedriver().setup();
+        //WebDriverManager.chromedriver().setup();
          driver = new ChromeDriver();
 
-//      ismi: IMPLICIT WAIT:yavas calısınca test etme fail verebiliyor,onun ,cin bu kodu kullanıyoruz
+//      ismi: IMPLICIT WAIT:yavas calısınca test etme fail verebiliyor,onun icin bu kodu kullanıyoruz
 //     note:(Duration.ofSeconds(15)) altınsda compare time yani altı kırmızı olursa ustunde bekle
 //          "set language level to 8...."ı sec. pom.xml'e otomatık kendi birseyler ekliyor.
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));

@@ -11,7 +11,7 @@ public class NewP {
         //1.set up Chrome Driver:
         // System.setProperty("web","PATH");
 
-        System.setProperty("webdriver.chrome.driver","./src/resources/drivers/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver","./src/resources/drivers/chromedriver.exe");
 
         //2.Create Chrome Driver
         WebDriver driver =new ChromeDriver();

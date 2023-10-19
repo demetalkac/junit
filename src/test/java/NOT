@@ -1,0 +1,923 @@
+PROJE OLUSTURMA
+ 1. New projeckt => maven => projeckt SDK( java version sec) 8 den yüksek olmalı => project name:SeleniumNewProject =>finish
+ 2. src sag tıkla => new Directory :name => "resources"
+ resources sag tıkla => new Directory :name => "drivers"
+resources sag tıkla => new Directory :name => "libraries"
+
+3. -go to https://chromedriver.chromium.org/
+  -click on Latest stable release:
+ -select the right driver
+ -move that driver in the drivers folder in the project
+ -unzip the driver
+ NOT: CHROMEDRİVER ı istersek yukardaki gibi jar file olarak YADA pom.xml in icine dependencies seklinde de yükleyebiliriz.
+
+ 4. get the latest selenium-java dependencies and paste in the pom.xml file
+ -go to https://mvnrepository.com/artifact/or...
+  -copy the latest dependency
+ -paste in the pom.xml inside dependencies
+ -refresh your project
+
+ 5. -Right click on java(test altındaki) - new - package
+ -name = com.myfirstproject
+ 6. Create a new JAVA class under the package
+ -right click on com.myfirstproject - new - java
+ -name = FirstSeleniumClass
+ 7. Create main method inside the class
+NOTE:
+8. Write your first test case
+ -adding System.setProperties("driver","path");
+ -creating WebDriver
+ -opening google page
+ IF YOU ARE USING WINDOWS, FIND THE RIGHT PATH FOR CHROMEDRIVER.
+ MAKE SURE TO USE .exe EXTENSION FOR WINDOWS.
+ FOR MAC NO NEED TO USE .exe EXTENSION.
+ For Chrome:
+ Path : System.setProperty("webdriver.chrome.driver","path to chrome driver");
+*****
+    FirstClass:
+  /1.set up Chrome Driver:
+       // System.setProperty("web","PATH");
+        System.setProperty("webdriver.chrome.driver","./src/resources/drivers/chromedriver.exe");
+       // System.setProperty("webdriver.chrome.driver","./src/resources/drivers/chromedriver"); //MAC
+  //2.Create Chrome Driver
+        WebDriver driver = new ChromeDriver();
+
+  //3. Now that we created webdriver, we can automate web applicattion
+        driver.get("https://www.techproeducation.com");
+
+  *****
+    Navigation METHODS
+ get(“URL”); OR navigate().to(“URL”); is used to go to a url
+ back(); to go previous page
+ forward(); to go to the next page
+ refresh(); to refresh the page
+ ( driver.navigate().to();   driver.navigate().back();    driver.navigate().forward(); driver.navigate().refresh(); )
+
+
+    DRIVER METHODS
+
+ driver.get(); Methods
+
+ driver.get( String Url ); Navigate to the page
+ driver.getTitle( ); Returns the title of the page
+ driver.getCurrentUrl( ); Returns the URL of the page
+ driver.getPageSource( ); Returns the page source of the page
+ driver.navigate( ).to( URL);  Navigate to the page
+ driver.manage( ).window( ).maximize();  Maximizes the window
+ driver.quit() driver.close()
+
+           “driver.manage( ).window( ); Method’lari:”
+  driver.manage( ).window( ).maximize( ); Browser’i maximize yapar
+  driver.manage( ).window( ).minimize( ); Browser’i minimize yapar
+  driver.manage( ).window( ).fullscreen( ); Browser’i full screen yapar
+  driver.manage( ).window( ).getPosition( ); Browser’in koordinatlarini verir
+  driver.manage( ).window( ).getSize( ); Browser’in olculerini verir
+
+ driver.manage( ).window( ).setPosition(new Point ( x:80 , y:0 ) ) ; Browser’i istenenkoordinatatasir
+ driver.manage( ).window( ).setSize(new Dimension( 800 , 600 )); Browser’i istenen olculere getirir.
+
+ driver.manage( ).timeouts( ).implicitlyWait(Duration.ofSeconds( 10)); Istenen sayfa acilincaya kadar maximum bekleme suresini belirtir
+  driver.close( ); sadece calisilan browser'i kapatir
+  driver.quit( ); acik olan tum browser'lari kapatir
+
+
+******
+   WHAT IS YOUR APPROACH FOR AUTOMATION?
+        -I read the acceptance criteria carefully.
+        -I then create my test cases
+        -Then I do my manual testing FIRST
+         -If all good, then I start complete my automation script
+         -If I find a bug/defect, then I talk to dev. Dev fixes the issue, then I retest.
+         If all is good then complete my automation script
+        -When the automation is complete, I prepare the report for the user story. In fact, My automation script
+        generates html reports for us. I upload those reports to the JIRA.
+        -For my manual test cases, I manually take screenshots and prepare reports and attach them to the JIRA.
+
+                    OTOMASYONA YAKLAŞIMINIZ NEDİR?
+         -Kabul kriterlerini dikkatlice okudum.
+         -Daha sonra test senaryolarımı oluşturuyorum
+         -Sonra İLK manuel testimi yaparım
+          -Her şey yolundaysa, otomasyon betiğimi tamamlamaya başlarım
+          -Eğer bir bug/kusur bulursam dev ile konuşurum. Dev sorunu düzeltir, ardından yeniden test ederim.
+          Her şey yolundaysa otomasyon betiğimi tamamla
+         -Otomasyon tamamlandığında kullanıcı hikayesi için rapor hazırlarım. Aslında, Otomasyon betiğim
+         bizim için html raporları oluşturur. Bu raporları JIRA'ya yüklüyorum.
+         -Manuel test durumlarım için manuel olarak ekran görüntüsü alıp raporlar hazırlayıp JIRA'ya ekliyorum.
+
+
+       -------------------------------------------------
+    WHAT DO WE DO WHEN OUR TEST CASE PASS ?    TESTİNİZ GEÇTİKTEN SONRA NE YAPIYORUZ?
+    - Prepare report and upload to JIRA        Rapor hazırlayın ve JIRA'ya yükleyin
+--------------------------------------------------
+    WHAT DO YOU DO WHEN YOUR TEST CASE FAILS?
+    -Retest to make sure from the failure.It can be data issue, typo, documentation issue or is can be a real bug.
+    -If that is a bug, then talk to the dev and let them fix the bug.
+    -After the fix, we retest. when test cases passes we upload to JIRA
+               TEST DURUMUNUZ BAŞARISIZ OLDUĞUNDA NE YAPARSINIZ?
+    - Hatadan emin olmak için yeniden test edin. Veri sorunu, yazım hatası, dokümantasyon sorunu veya gerçek bir hata olabilir.
+    -Eğer bu bir bug ise geliştirici ile konuşun ve hatayı düzeltmelerine izin verin.
+    -Düzeltmeden sonra tekrar test ediyoruz. test senaryoları geçtiğinde JIRA'ya yükleriz
+------------------------------------------------
+    WHAT DO YOU DO WHEN YOU FIND A BUG ?
+    -Retest to make sure from the failure.It can be data issue, typo, documentation issue or is can be a real bug.
+    -If that is a bug, then talk to the dev and let them fix the bug.
+    -After the fix, we retest. when test cases passes we upload to JIRA
+                   BİR HATA BULDUĞUNDA NE YAPARSINIZ?
+     - Hatadan emin olmak için yeniden test edin. Veri sorunu, yazım hatası, dokümantasyon sorunu veya gerçek bir hata olabilir.
+     -Eğer bu bir bug ise geliştirici ile konuşun ve hatayı düzeltmelerine izin verin.
+     -Düzeltmeden sonra tekrar test ediyoruz. test senaryoları geçtiğinde JIRA'ya yükleriz
+
+******
+           -WebDriverManager-
+So far we used drivers in our local--Şimdiye kadar yerelimizde sürücüler kullandık
+    yani bunu kullandık oncesinde==>//System.setProperty("webdriver.chrome.driver", "./src/resources/drivers/chromedriver.exe");
+  Not:Bazı sirketler "System.setProperty"i , bazı sirketler  "WebDriverManager.chromedriver().setup();"ı kullanır.
+  NOT: Farklı browzerları kullanacagımız "crosbrowzer testing,paralel testing"'lerinde
+       WebDriverManager.chromedriver().setup(); bize yardımcı olacak
+
+    We can use WebDriverManager dependency on a maven project
+   (Bir maven projesinde WebDriverManager dependency kullanabiliriz)
+    This helps us to setup and use driver faster
+    (Bu, sürücüyü daha hızlı kurmamıza ve kullanmamıza yardımcı olur)
+    This is the second was of using driver--Bu, driver kullanmanın ikincisiydi
+    From now on we will use WebDriverManager--Bundan sonra WebDriverManager'ı kullanacağız
+
+    For this, go to mvnrepository.com and get the WebDriverManager dependency
+    https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
+
+    ör:  WebDriverManager.chromedriver().setup();
+                 //Create driver
+                 WebDriver driver = new ChromeDriver();
+                 //maximize
+                 driver.manage().window().maximize();
+                 //going to the page
+                 driver.get("https://www.techproeducation.com");
+                 //close
+                 driver.quit();
+
+        *********
+                  getPageSource()
+   getPageSource() returns page source code as a string-sayfa kaynak kodunu bir string olarak döndürür
+   We might use this to verify if a certain text exist in the entire page
+   - Bunu sayfanın tamamında belirli bir elementin mevcut olup olmadığını doğrulamak için kullanabiliriz
+   Note that pageSource is not used a lot to do assertions
+   - pageSource'un assertion yapmak için pek kullanılmadığına dikkat edin
+   Because it is too general and can lead false result
+   - Çünkü çok genel ve yanlış sonuçlara yol açabilir
+      driver.getPageSource();
+      ör:  //Test if amazon contains “Registry” on the homepage
+                   driver.get("https://www.amazon.com/");
+                   String pageSource = driver.getPageSource();
+                   System.out.println(pageSource);
+                   String expectedWord = "Registry";.....
+
+    *******
+                    MAVEN
+  Maven is a Java build and project management tool.
+  With maven, you can create maven project to manage the entire automation process.
+  Maven help us to manage the dependencies or plugins with pom.xml(Project Object Model) file.
+  Maven helps us compile, run, and deploy the java applications as well.
+  There are other tools like Ant and Gradle but maven is the most popular.
+  Owned by Apache software Foundation
+  pom.xml runs first. pom.xml has the maven configuration.
+  Dependencies are downloaded to the local repo from the central maven repository
+  Then project uses the default or custom maven settings that is in the pom file
+
+              WHY MAVEN
+
+  Fast project build with maven. Maven makes project management easy.
+  Maven downloads available jar files related to that dependency automatically.
+  Works with multiple IDE(intelliJ, eclipse, etc) and tools. Open source
+  Large user base/forums/community
+  *******
+                 JUNIT
+     JUnit framework oluşturmak için bir API dır .
+       -add dependencies JUnit->latest version:https://mvnrepository.com/artifact/junit/junit/4.13.2
+           JUnit bir API'dır testing framework yapmak icin.
+           JUnit is the most bacic Java testing framework.
+           Testers use JUnit to create testing framework and orgaanize the test scripts
+           Devolopers also uses JUnit to run unit tests.
+           We will learn TestNG framework as well which is the advenced version of JUnit.
+           We will also use JUnit-Cucumber framework to create our final testing framework.
+            */
+           /*
+            * So far we kept using main method
+            * We no longer need to use main method to create test cases with JUnit
+            * -@Test : is used to create test cases
+            * NOTE: All @Test methods must be void
+            * -@Before: Runs before each @Test class. This is used to run repeated pre conditions.
+            * For example, setup, create driver, maximize window
+            * -@After : Runs after each @Test class. This is used to run repeated after condition
+            * For example, driver quit, report generation
+            * -@BeforeClass : Runs before each CLASS only ONCE. This method must be static
+            * -AfterClass   : Runs after each CLASS only ONCE. This method must be static
+            * @Ignore : Is used to skip/ignore a test case
+         *******************
+                     - Day03_Assertions -
+
+ 3 tane assertion method var,bunları daha cok kullanacagız :assertEquals(),assertTrue(),assertFalse()
+ assertFalse() cok kullanılmaz.
+ *assertEquals(),assertTrue(),assertFalse(), bunları kullanarak assertion yaptıgımızda hard assertion yapmıs oluruz,
+ cunku sonuc eger fail ise test execution stop(yani test durur ve devam etmez).Mesela; Assert.assertEquals(1,5);
+ sonucu fail olur ve diger essertionlar calısmaz. Bunun yerine if-else daha kullanıslı.
+
+          What is assertion in testing? (Testte iddia nedir?)
+   Assertion is done to check if expected result is equal to actual result.
+   (İddia, beklenen sonucun gerçek sonuca eşit olup olmadığını kontrol etmek için yapılır.)
+   -expected == actual -> pass
+    -expected != actual -> fail
+             ------------------
+    assertEquals("expected","actual");
+    assertTrue(true); -> pass
+    assertTrue(false); -> fail
+    assertFalse(false); -> pass
+    assertFalse(true); -> fail
+
+//        HARD ASSERTIOS: TEST EXECUTION STOPS IF ONE THE ASSERTION FAILS. THIS IS CALLED HARD ASSERTIOS
+        //BİR ASSERTION BAŞARISIZ OLURSA TEST YÜRÜTME DURUR.Yani steplerden sadece biri fail oldugu zaman test calısması
+          durur,alttaki steplere gecmez. BUNA HARD ASSERTIOS Denir
+//        VERIFICATION: TEST EXECUTION CONTINUES EVEN IF TEST VERRIFICATION FAILS. VERIFICATION MEANS LIKE IF STATEMENT
+        // TEST DOĞRULAMA BAŞARISIZ OLSA BİLE TEST YÜRÜTME DEVAM EDER. DOĞRULAMA, IF BEYANI GİBİ DEMEKTİR
+
+//        What is difference between Assertion and Verification?
+//        Assertion stops after assertion fails. Verification continues even after verification fails
+        // Assertion başarısız olduktan sonra assertion durur.Verification başarısız olduktan sonra bile verification devam eder
+//        Junit assertions are hard assertion. If statement is verification
+        // Junit assertions  zor assertions . If statement is verification
+//        NOTE: TestNG has soft assertion as well. We will learn it in TestNG
+        // NOT: TestNG'nin de soft assertion vardır. TestNG'de öğreneceğiz
+
+        *****
+               -checbox-
+          Checbox ların secilip secilmedigini kontrol ediyoruz. isSelected() methodu eger checkbox dada
+          önce scilmis mi diye kontrol eder.Fakat biz eger checkbox secili ise "if" ile bunu kontrol edip
+          sonra tıklatabiliriz.Örnegi asagıda:
+              Click on the checkbox 1 if it is NOT already selected
+                  if (!checkbox1.isSelected()){//isSelected() returns true id checkbox is checked, returns false if checkbox is not checked
+                      checkbox1.click();
+                  }
+********
+     METHODS
+  * isSelected() returns (boolean)true id checkbox , radio button is checked, returns false if checkbox is not checked
+           hecbox ların secilip secilmedigini kontrol ediyoruz. isSelected() methodu eger checkbox dada
+           önce scilmis mi diye kontrol eder.
+
+  *isDisplayed() To verify if element is exist on the page.returns (boolean) TRUE is element is on the page. returns false if element is not displayed on the page
+  ÖRN:  WebElement loginElement = driver.findElement(By.linkText("Login/Register"));
+        Assert.assertTrue(loginElement.isDisplayed());
+
+
+   *isEnable() To Verify if an element such as input, checkbox, radio button is interactive. returns true if element
+               is enables, rutern false otherwise
+
+
+
+
+   ********
+   LOCATORS
+   A-Locators :
+       İd
+       name
+       className
+       tagName
+       linkText
+       partialLinkText
+   B-Dynamic locators
+        *xpath: -absolute
+                -relative
+        *cssSelector: -id- class- tag attribute Combinations
+
+    *****
+    Absolute xpath
+    / used
+    You cannot skip a child to go to the next element
+    You have to go to child element one by one from parent to child
+    You cannot go to a certain element easily if the html is longer
+    Absolute xpath is not recommended to use because it can easily be broken when a new element is added on the pag
+
+    Relative xpath
+    // is used
+    You can skip a child to go to the next element
+    You can go to a certain element easily if the html is longer
+    Relative xpath is recommended to use because there are multiple ways to write dynamic xpath
+*********
+
+    * How many locators are there?
+     * ---8 locator.
+     * What are they?
+     * ---id, name, className, linkText, tagName, partialLinkText, xpath, css
+     * Which one do you prefer? Why?
+     * ---Ahmet's answer :
+     * -First If there is an ID i use id, cause id is unique and faster
+     * -If there is no id then i use name if there is a unique name
+     * -I also sometime create dynamic xpath. Because some elements do not have stable attributes like id and name. And I can write xpath for any element.
+     * -I sometimes even use css selector instead of xpath. But i personally use xpath more than css.
+     * What is difference between absolute xpath and relative xpath?
+     * -Absolute xpath we start from the parent and go child elements one by one
+     * -Absolute xpath use /
+     * -Absolute xpath may easily be broken when a new element is added on the page
+     * -For this reason we should never use absolute xpath. In fact, my team don't let QA's use absolute xpath.
+     * --Relative xpath we don't start from parent and go child one by one. We go straight to the element
+     * --Relative xpath use //
+     * --Relative xpath is very reliable It doesn't easy brake, because absolute xpath doesn't dependent on other element
+     * --I use absolute xpath in my framework when to locate the elements
+     * What is the difference between xpath and css selector?
+     * -First xpath and css are similar. Both are helpful and there are different ways to create xpath or css
+     * -Syntax is a little different.
+     * --in xpath we use // and @, but in css we don't
+     * --css is a little faster than xpath(way less than 1 second). xpath does navigation in the html that takes a little bit time
+     * --there are more ways to write xpath. For example, dynamic xpath has contains, starts-with, ends-with functions
+          **
+    xpath vs css
+
+    -Css is a little faster
+    -xpath navigates through the DOM(html code on the browser. Document object model), cssSelector locates the target without navigation
+    -Xpath is more common. We can write dynamic xpath to locate element
+    -Xpath is easier to use with index
+    -They have different syntax. For example, // is used in xpath but not in css
+    -Css locators usually same on different the browsers, so it is more reliable
+
+**************
+
+TEST DATA : username, password, URL, test environment, city, ssn,...
+     -Where do you get your test data?
+     -BA-Business Analyst(Writes the acceptance criteria(AC))
+     -Test Lead
+     -Manual Tester
+     -Tech Lead(Team Lead);
+     -Developer
+     -We can retrieve data from the database
+     -We can retrieve data from API
+     -Documentation. For example swagger doc can be used for API
+     -If we need mock data(fake data), we can use the Java Faker
+     -NOTE: Java Faker generates data randomly.
+************
+    - JAVA FAKER CLASS-
+
+      1. get Faker dependency
+      2. Create a Faker object
+         Faker faker = new Faker();
+      3. generate fake data
+         String fName = faker.name().firstName();
+
+ **************
+ DROPDOWN
+
+ Step 1: Locate the select element dropdown using any locator. Example:
+ WebElement selectElement=driver.findElement(By.id(“value of id"));
+ Step 2: Create Select object and pass the selectElement to that object.Example:
+ Select options=new Select(selectElement);
+ Step 3: We now can handle dropdown using any method. Example:
+        options.selectByIndex(1);
+        options.selectByValue(“1”);
+        options.selectByVisibleText(“Watch”);
+        ---
+ ** getOptions(); returns all of the dropdown options. Tum secenekleri alıp webelementlerini bir
+     liste dönüstürür. Yani dropdown icindeki tüm secenekleri bir list icinde tolar.
+         -Select objesi olustur
+         -elementi locateni al
+         -ve locoteni yaptıgın elementi "List<WebElement>" icine at
+    WebElement dropdown = driver.findElement(By.id("dropdown"));
+            Select select = new Select(dropdown);
+            List<WebElement> allOptions = select.getOptions();
+            for (WebElement eachOption : allOptions){
+  ** getText() returns the TEXT of the webelements as STRINGgetText() methodu String return eder.
+                System.out.println(eachOption.getText());
+            }
+
+  **getFirstSelectedOption() :secilmis olan secenegi verir
+
+         WebElement dropdown = driver.findElement(By.id("dropdown"));
+            Select select = new Select(dropdown);
+        //        printing the selected option
+            System.out.println("Selected Option : "+select.getFirstSelectedOption().getText());
+            ----
+ **       7.Find the size of the dropdown,
+      int numberOfOptions = select.getOptions().size();
+
+           ---
+  *We can select from a dropdown with 3 different ways.
+  1.Select and Print Option 1 using index using selectByIndex();
+  2.Select and Print Option 2 by value using selectByValue();
+  3.Select and Print default value by visible text using selectByVisibleText();
+  *We can also put all of the dropdown elements in a List<WebElement> using getOptions();
+
+                *******
+
+    -What is a dropdown?
+        ---Dropdown is a webelement. It has list of options.
+    -How do you handle dropdown? What do you do to automate dropdown?
+        ---Dropdowns are created using Select class. So we first locate the dropdown element, then use select class
+        to interact with dropdown elements.
+    -How do you select dropdown elements?
+        ---We actually have 3 options to select a dropdown(index,value,visible text)
+     -Tum dropdown seceneclerini nasıl print ederiz?
+        ---Tum dropdown elementlerini getOptions() methodu ile list'e koyarız sonra secenekleri loop ile yazdırabilirz
+     -Bir secenegin secili oldugunu otomate etmek icin ne yapılır?
+        ---  getFirstSelectedOption() secili olan secenegi return eder
+**************************
+
+            ALERT
+    ★accept() Same as clicking OK of an alert. driver.switchTo().alert().accept();
+    ★dismiss() Same as clicking Cancel of an alert. driver.switchTo().alert().dismiss();
+    ★getText() To get the alert message of the alert. driver.switchTo().alert().getText();
+    ★sendKeys(“Text”) To send a text into alert text box driver.switchTo().alert().sendKeys(“Text")
+
+****
+
+      What is an alert?
+  Alerts are a pop up that is generated by javascript. When there is an alerts, we
+  must handle the alerts. Otherwise, we cannot continue to the test execution
+  Alert webelementi degil, javascript ile olusturulur.Bu nedenle önce alert e switc yapılır.
+  3 cesit alert var:1- JS Alert= click "ok" => "accept();"
+                    2- JS Confirm => "cansel" => "dismiss();"
+                    3- JS Prompt => click ok demedem önce sendKeys() ile mesaj gönderiyorz.
+                       Sonra "OK" veya "Cansel" a tıklıyoruz.
+     How do you handle alert?
+  First we cannot inspect js alerts. We should first switch to the alert and
+  se accept() to click ok, dismiss() to click cancel, sendKeys() to type,
+  getText() to get the text from the alert
+
+  *******
+         -Iframe -
+  **Bir sayfa içinde birden fazla sayfa olabilir, yani icice geçmiş sayfalar gibi. Driver’ı sayfalar arasında geçiş yaparak kullanabiliriz
+  -Iframe is used to embed a new map, video, page on a page. It kind of creates a page within a page
+  -Selenium cannot directly see the elements inside an iframe if there is an iframe on a page.
+  -When there is an iframe, we must first switch() to the iframe
+  ★There are 3 ways to switch to iframe : by index, id/name, or web element
+  •	driver.switchTo().frame(index of the iframe);//index start from 0 driver.switchTo().frame(0) will switch the first iframe
+  •	driver.switchTo().frame(“id or name of the iframe”); driver.switchTo().frame(“mce_0_ifr”)
+  •	driver.switchTo().frame(WebElement of the iframe);//WebElement using any locators like xpath,.. driver.switchTo().frame(“//iframe[@id=‘mce_0_ifr’]”);
+  ör:   driver.switchTo().frame(0);// INDEX OF IFRAME. INDEX STARTS AT 0
+        driver.switchTo().frame("mce_0_ifr");// ID OR NAME OF IFRAME. PREFERRED ONE.
+        driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='mce_0_ifr']")));// WEBELEMENT OF IFRAME
+  • Switching back to parent / default frame: aframe ın dışına çıkmak için:
+  o	driver.switchTo().parentFrame(); to get back to parent frame.let you go only 1 upper level.
+  o	driver.switchTo().defaultContent(); to get back to main/most upper page. Let you go multiple upper level .
+  ◦ driver.findElements(By.tagName(“iframe”)); returns the total number of iframe on a page
+
+  **
+  clear() is used to delete the text is the elements
+  --
+  !!!!!!!!!!!***  How do you find the number of iframe on a page?
+  Sample Answer: iframes are created using iframe tag. I can use findElements by tag name that will return all of the element with iframe tags as List. Then I use size method to find the number of iframe in the list
+  Alternatively, I can also use findElements with xpath like driver.findElements(By.xpath(“// iframe”)).size()
+  Can you tell me the exact syntax?
+  Sure. driver.findElements(By.tagName(“iframe”)).size();
+
+  NOT:- Bir sayfada iframe olup olmadığını anlamak için sayfaya inspect yapıp, “// iframe” yazarak görebiliriz.
+  -Eger ıframe olan sayfada, ıframe icinde bir yeri "swichTo().fame()"" yapmadan locate etmeye
+   calısırsak "noSuchElementEcseption" alırız.Önce switch yapmalıyız sonra locate etmeliyiz webelemennti.
+**************
+       What might be the reason for your test case to fail?
+     *There may be wait problem. The page may be very slow. Internet maybe not fast enough.
+      -Put some more wait. We can use explicit wait in selenium(we will learn later)
+     *Locator might be incorrect.
+      -Double check locator and fix if needed
+     *Data issue. Typo in our expected values.
+      -If there is any documentation issue, we can talk to BA to fix the document and then we can use correct expected values
+     *Maybe there is an iframe on the page
+      -We first need to switch to the frame
+     *Maybe there is an alert on the page
+      -We first need to handle the alert by accepting or dismissing
+     *Maybe the page opens in a new tab or window
+      -We first need to switch the target window
+     *It may be a real bug that is caused by the latest codes.
+      -We discuss the issue with the team then raise a bug ticket if needed
+****************
+       -Windows -
+  -Sometimes when we click on a button, a new windows opens in a new tab.
+  -Syntax:
+  driver.switchTo().window(driver.getWindowHandle); switchTo().window() switches between windows.
+  getWindowHandle() get the handle of the page the WebDriver is currently controlling. This returns a String.
+  getWindowHandles() will give you all the handles for all the pages that is open. This returns a Set
+
+   BY DEFAULT driver is on this window
+   driver.getWindowHandle(); returns THE CURRENT WINDOW HANDLE(window1 handle) String window1Handle = driver.getWindowHandle();
+   To switch the window 2, I need WINDOW 2 HANDLE But how can I ever get window 2 handle
+   We need to use : driver.getWindowHandles(); return ALL OPEN WINDOW HANDLES Set<String> window1Handle = driver.getWindowHandles();
+   SET : {window1handle, window2handle}
+   Use for each to get window2 handle Finally switch to window2 using
+   driver.switchTo().window(window2handle);
+
+   NOT:Selenium 3 de "driver.getWindowHandle();" ile driverın o an bulundugu windowu alır ve String'e koyarız.
+   "driver.getWindowHandles();" ile acılan tüm acılan windowsları alabilmek icin ve windowslar arasında gecis
+   yapabilmek icin bunları "set" icine koyarız. SET tercih etmemizin sebebi her windowun farklı ıd si var yani uniqe'dir. Bütün windows
+   id'lerini yazdırabilmek icin ve windowslar arasında gecis yapabilmek icin de for kullanırız.
+                ---------
+   -With Selenium 4, we are able to create and switch to new windows or tabs
+   -Selenium 4 ile diger window a gecis daha kolay Set ve for döngüsü kullanmaya gerek yok.
+   driver.switchTo().newWindow(WindowType.TAB);
+   driver.switchTo().newWindow(WindowType.WINDOW);
+
+*******************
+       -Basic authentication-
+  -Auth are used for security reason
+  -One way to auth is to use below syntax: https://username:password@URL
+  Ör:
+  username : admin
+  password : admin
+  url : the-internet.herokuapp.com/basic_auth
+   NOT: “Authentication” temel kimlik doğrulama demektir. Bazı sayfalarda çalışırken izine ihtiyacımız oluyor. İzin için eger pop-up gibi bir ekran çıkıyorsa normal locate ederek sentKeys ile bilgileri tek tek göndermeyiz. Onun yerine https://username:password@URL sintexini kullnırız.
+   Ör:        driver.get("https://admin:admin@the-internet.herokuapp.com/basic_auth");
+       //assertion
+      String successMessage = driver.findElement(By.xpath("//p")).getText();
+    Assert.assertTrue(successMessage.contains("Congratulations! You must have the proper credentials."));
+******************
+  Actions
+  -We need to use Actions class to perform mouse and keyboard actions.
+  -There are two type actions:
+    Mouse-based actions : double-click, right click, click and hold, drag and drop, move over element etc, scroll.
+    Keyboard-based actions: Keyboard actions can function as Shift, Ctrl, and Alt keys.
+  -Actions has many useful mouse and keyboard functions
+           ---
+  Step 1: Create the action object:
+  Actions actions=new Actions(driver);
+  Not: action objesi driverı control ediyor
+  Step 2: Locate the WebElement you want to work on : WebElement element = driver.findElement(By.id(“ID"));
+  Step 3: Perform the action on the WebElement by using this actions object.
+          For instance, to right click:actions.contextClick(element).perform();
+
+  -perform() : Executes an action.This must be used at the end to perform an action.DO NOT FORGET TO USE PERFORM()
+  **
+  	Mouse ile yapılan işlemler:
+  1-) Scroll up-down: Mouse ve klavyedeki oklar ile sayfayı yukarı-asagı hareket ettirmek. 2 sekilde olur: “page” ile kaydırma daha fazla olurken “arrow” ile daha az kaydırma olur:
+  PAGE_DOWN=>scrolling down
+  PAGE_UP=>scrolling up
+  ARROW_DOWN=>scrolling down
+  ARROW_UP=>scrolling up
+  Arrow vs Page : Arrow moves less than Page
+  SendKeys() parantezine yazarak yapıyoruz:
+  actions.sendKeys(Keys.PAGE_UP).perform();
+  actions.sendKeys(Keys.ARROW_UP).perform();
+   - Sayfayı saga-sola da hareket ettirebiliriz,baska methodlarda var kullanılabilir.  actions.sendKeys(Keys.ARROW_LEFT).perform();
+  actions.sendKeys(Keys.ARROW_RIGHT).perform();
+  2-) doubleClick() :Webelementine cift tıklar.
+  3-) clickAndHold() :Webelementi üstünde click yapılı olarak bekler
+  4-) dragAndDrop() : Webelementini bir noktadan diğerine sürükler ve bırakır. 2 parametre ile calısır, birincisini ikincisine(hedef)’e taşır, sürükler.
+  5-) dragAndDropBy(source,160,30) : bu method 2 parametre ile calısır, ilki sürüklemek istediğimiz(source kısmı)yeri , ikincisi ise nereye koymak istiyorsak koordinatlarla belirterek(x,y 160,30 gibi) istediğimiz elementin istediğimiz yerine koymak
+  6-) moveToElement(): Mouse’u  spesifik olarak seçtiğimiz webelementinin üstünde tutar. Mouse u locate’ını aldığımız elementin üzerine gitmesi için kullanıyoruz.Yani hover over yapmış oluyoruz, elemente gelerek sonra istediğimiz elemente tıklayabilir (tabi tıklayacağımız elementi de locate etmeliyiz).
+  7-) contextClick() : Mause ile webelemente “sagtık” yapar
+  8-) moveByOffset() : methodunun parametreleri koordinat vermemiz icin ise yarar. Elementi nereye koymak istiyorsak parametrelerine koordinat yazıyoruz ve oraya koyar.
+  9-) contextClick(): right click anlamında.
+  ** release() methodu “bırak” anlamına gelir. clickAndHold() ile tuttuğumuz elementi release() methodu ile bırakmayı hedeflediggimiz yere “bırak” demiş oluyoruz.
+         ******
+  Keyboard ile yapılan işlemler:
+  1-) sendKeys() :
+  2-) keyDown() :Klavyede tuşa basma işlemini yapar.
+  3-) keyUp() : Klavyede tuşu serbest bırakma işlemini yapar.
+  NOT: Örnegin Google da arama yerine birsey yazacağımız zaman :
+  *keyDown(aramaKutusu,Keys.SHIFT) =>”arama kutusunda Shift tuşuna bas” demiş oluyoruz
+  *sendKeys(“Iphone x fiyatları”) => shift’e basılı tutarak yazıyı yaz,yani arama kutusuna yazacağımız yazıyı büyük harfler ile yaz demiş oluyoruz.”IPHONE X FIYATLARI” gibi.
+  *keyUp(aramaKutusu,Keys.SHIFT) => shift’e artık basma, basmayı bırak demiş oluyoruz.
+                     -------
+  -Keyboard actions are keyUp, keyDown, sendKeys.
+  -Keyboard actions can function as Shift,Ctrl, and Alt keys that is on the keyboard.
+  -keysDown(); used to press and hold a key. Keys mean Shift,Ctrl, and Alt keys.
+  -keysUp();usedtoreleaseakeythatisalreadypressedafterkeysDown()method.WecanusekeysUp()after
+  -keysDown() method. Otherwise we may get IllegalArgumentException.
+  -sendKeys(element,”text”); Used to type into text box, text area and so on.
+
+        ******
+       .build() is recommended to be used when we chain multiple commends to make sure the connection is strong. -buildden onceki methodların iliskisini kur,guclendir anlamınd
+         .perform() is used when there is single or multiple commends to execute the action - islemi gerceklestir
+*************
+                -Cookies-
+           What is cookie?
+     Cookies are temporary data/files that is generated by the browsers.
+     It's a way for a website to remember you, your preferences, and your habits online.
+     Çerezler, tarayıcılar tarafından oluşturulan geçici veriler/dosyalardır.
+      Bir web sitesinin sizi, tercihlerinizi ve çevrimiçi alışkanlıklarınızı hatırlamasının bir yolu.
+
+           We can automate handling cookies:
+      -Find the cookies
+      -Add new cookie
+      -Delete cookies
+      ------
+         Cookies'leri  "driver.manage()." yani manage methodu ile alıyoruz.
+          getCookies() methodu ile tüm cookieleri alıyoruz.getCookies() " Set<Cookie>" return eder.
+          1. Find the total number of cookies:
+           driver.get("https://www.amazon.com");
+          Set<Cookie> allCookies = driver.manage().getCookies();
+          int numOfCookies = allCookies.size();
+           2. Print all the cookies:
+           for (Cookie eachCookie : allCookies){
+                  System.out.println("Cookie ==>>> "+eachCookie);
+                  System.out.println("Cookie Value ===>>> "+eachCookie.getValue());
+                  System.out.println("Cookie Name ===>>> "+eachCookie.getName());
+              }
+           //NOT: For ile cookiesleri aldıktan sonra cookies'lerin bazı özelliklerinide alabiliriz:getValue(),getName())...
+          3. Get the cookies by their name-Çerezleri isimlerine göre alın:
+              System.out.println("Cookie Named : "+driver.manage().getCookieNamed("i18n-prefs"));
+          4. Add new cookie: Bunun icin önce Cookie classından obje olusturuyoruz sonra ekliyoruz
+              Cookie cookie = new Cookie("my-fav-cookie","apple-pie"); //cookie olusturduk
+              driver.manage().addCookie(cookie);
+          5. Delete cookie by name:
+              driver.manage().deleteCookieNamed("session-id");
+          6. Delete all of the cookies:
+              driver.manage().deleteAllCookies();
+ **********
+       - FILES -
+-We can't test windows application with selenium. But we can use JAVA in testing. Selenium ile desktop dakilere ulaşamaz, onun için java kullanarak file’ları bilgisayırımıza indirebilir veya başka bir yere yükleyebiliriz.
+JAVA İLE:
+1-We can use Java to check if a file exist on our computer or not - Bir dosyanın bilgisayarınızda var olup olmadığını kontrol eder.
+
+System.getProperty("user.dir"); =>gives the path of the current folder- -geçerli proje klasörünün(dosyanın bulunduğu klasörün yolu) yolunu verir
+ System.getProperty("user.home"); =>gives you the user folder – bilgisayarın kullanıcı ismini de kapsayan path i verir.
+Files.exists(Paths.get("path of the file")); =>Checks if a file path exist on your computer or not – bigisayarımızda dosyanın olup olmadığını kontrol eder.
+Ör:
+String userDIR=System.getProperty("user.dir"); //=>gives the path of the current projeckt folder-geçerli proje klasörünün yolunu verir
+System.out.println("userDIR = " + userDIR); //C:\Users\DEMET\IdeaProjects\SeleniumNewProject
+
+String userHOME=System.getProperty("user.home");// =>gives you the user folder
+System.out.println("userHOME = " + userHOME);   //C:\Users\DEMET
+
+2-When we download a file it goes in the downloads folder -Dosya yükleme işlemini kontrol eder.
+3-We can use this Java concept to check if a downloaded file is in our download folder - İndirilen bir dosyanın indirme klasörümüzde olup olmadığını kontrol eder.
+
+--
+How to find PATH of a file
+MAC:   Open terminal =>Drag and drop the file on the terminal
+String filePath =“/Users/techproed/Desktop/logo.jpeg”;
+
+WINDOWS:  Open CMD =>Drag and drop the file on the CMD
+String filePath =“C:/Users/techproed/Desktop/logo.jpeg”;
+-----
+Bir dosyanın bilgisayarda (desktop-masaüstünde) olup olmadığını görmrk için -FileExistTest:
+        String userHOME=System.getProperty("user.home        System.out.println("userHOME = " + userHOME);
+//        And verify if that file exist on your computer or not
+        String pathOfFile = userHOME +"/Desktop/logo.jpeg";
+//        String pathOfFile = userHOME +"\\Desktop\\logo.jpeg"; WINDOWS
+        boolean isExist = Files.exists(Paths.get(pathOfFile));//returns TRUE if file exists. FALSE if file doesn't exists
+        assertTrue(isExist); //Passes if file exist, Fails if files doesnt exists
+  --------------
+Dosya Indirmek için-DOWNLOAD:
+-driver.get(“url);
+- indireceğimiz elementin locate ediyoruz ve click() yapıyoruz.
+driver.findElement(By.partialLinkText("b10 all test cases")).click();
+- Dogrulamak için:
+String homeDirectory = System.getProperty("user.home");
+String filePath = homeDirectory+\\Downloads\\.......; =>indirilen dosyanınyolu
+        boolean isDownloaded = Files.exists(Paths.get(filePath)); // "Files" ve "Paths" javadan import ediyoruz.
+        Assert.assertTrue(isDownloaded);
+
+-----------
+
+Dosya yükleme -File Upload
+   1-  url'e git:
+   driver.get("https://the-internet.herokuapp.com/upload");
+   2- Sayfada yükleyecegimiz yerin locate'i al-locate choose file and click choose a file:
+   "choose file"(dosya sec),locate'nı al,-->.id("file-upload"
+   3- tıkla ve yuklemek istedigin dosyayı sec kendi bilgisayarımdan- select a file from your computer
+    -->sectigim dosyanın path'ini kopyala:
+    String userHOME=System.getProperty("user.home");
+    String pathOfFile = userHOME +"\\Desktop\\logo.jpeg";
+
+   4- Sending the path of the file that I want to upload.
+     we can use send keys cause the input type file combination
+        chooseAFileButton.sendKeys(pathOfFile);
+
+   5- upload yaptıktan sonra upload olduguna dagir, acılan yerdeki bir elementin locate'i al.-then locate and click uploated
+      "upload" ın locate ni al -->id("file-submit")
+      driver.findElement(By.id("file-submit")).click();
+
+   6- Asserting
+      boolean isEqual =driver.findElement(By.xpath("//H3")).getText().equals("File Uploaded!");
+      Assert.assertTrue(isEqual);
+
+*****
+!!!!!!!!!!!***    How do you upload a file with selenium?
+    -First selenium has limitation automation of files. But file upload can be done with selenium.
+    We locate the chose file button and use send keys function to send the path of the file.
+    Then we click upload button to upload the file.
+    Path of the file should be dynamic - use System.getProperty("user.home");
+
+        LIMITATION:
+   Selenium has limitation automation DESKTOP APPS
+   For example, we can not find path of files, or verify if file exists on out machines with selenum
+   Instead we use java File libraries
+    ------------
+    Selenyum içeren bir dosyayı nasıl yüklersiniz?
+     -İlk olarak selenyum dosya otomasyonunda sınırlama vardır. Ancak dosya yükleme selenium ile yapılabilir.
+     Dosya seç düğmesini buluyoruz ve dosyanın yolunu göndermek için gönderme tuşları işlevini kullanıyoruz.
+     Daha sonra dosyayı yüklemek için upload butonuna tıklıyoruz.
+     Dosyanın yolu dinamik olmalıdır - System.getProperty("user.home"); kullanın
+
+     SINIRLAMA:
+    Selenium'un sınırlama otomasyonu vardır MASAÜSTÜ UYGULAMALARI
+    Örneğin, dosyaların yolunu bulamıyoruz veya selenumlu makinelerde dosya olup olmadığını doğrulayamıyoruz. Bunun yerine Java Dosya kitaplıklarını kullanıyoruz
+
+**************************
+       - Auto Complete -
+    Auto completw için: url git
+     => locate’ini aldığın kutuya sendKeys() ile aramak istediğin yazıyı gönder.
+     => ve o sekilde locate al, birçok seçenek oluğu için child div’ler olacak. O nedenle biz
+     neyi arayacak isek onun bulunduğu div’i index ile değil(çünkü eklemcıkarma olabilir)
+     value’sunu al. Ve click yap: ör:
+     driver.findElement(By.xpath("//div[@id='myCountryautocomplete-list']//div[.='United Kingdom']")).click();
+*****************************
+  TAM EKRAN GORUNTUSU
+             driver.get("https://www.techproeducation.com");
+   //1- Ekran goruntusunu getScreenshotAs() ile alıp File olarak olusturalm
+   //   getScreenshotAs() methodu return "File"
+   //  OutputType.FILE =>DOSYA TİPİdir. Dosyayı direk resim olarak alamıyoruz o nedenle "FILE" sectik burda.
+     File goruntu = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);  //Bununla screenshot ı aldık
+  //2- Almıs oldugum ekran goruntusunu belirledigim bir PATH e kaydet. dir=directory(dosya)
+          String currentDate = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date()); //currentDate olusturmamızın sebebi aldıgımız her ekran göruntusunu ayrı vakitlerde gösterdikki daha dinamik olsun kodumuz.
+       String path = System.getProperty("user.dir")+"/testoutput/EkranGoruntuleri/"+currentDate+"image.png";
+       File hedef = new File(path);
+  //3- goruntu ile dosyayı birlestirip kaydet
+          FileUtils.copyFile(goruntu,hedef);
+
+  ALTERNATIF OLARAK TUM ADIMLARI TEK SEFERDE DEGISKEN KULLANMADAN YAZABILIRIZ:
+  FileUtils.copyFile(((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE), new File(System.getProperty("user.dir")+"/testoutput/EkranGoruntuleri/image.png"));
+  !!!!!!!!!!! Seleniumda tum ekran goruntusunasıl alınır?
+    *Seleniumdan gelen "getScreenshotAs()" methodu ile alınır.
+    * Seleniumdaki TakeScreenshot api'dan gelen "getScreenshotAs()" methodu kullanılır.
+    * 2 farklı ekran goruntusu alınabilir:tum sayfa,ozel bir elementin screenshotı alınabiliyor.
+         ikincisi Selenium 4 ile spesifik bir elemanın screenshot'ını alabiliyoruz.
+   */
+*************************
+  Extent Reports
+  -Extent reports “custom html raporları”(sirkete özel bilgiler kullanıla) oluşturmak için kullanılır.Örnegin özel proje veya sirket bilgisi, takım bilgisi,QA bilgisi….gibi.
+  http://www.extentreports.com/docs/versions/4/java/index.html
+  1-Meven’dan html codelarını al
+  2- Extent report ayrı bir API'dir.Selenıum dısında da kullanılabilir
+        Otomasyon raporları almak icin kullanılır
+        Onemli 3 class var:
+            -ExtentReports ->sablom olusturmada kullanılır.Sirkete ait rapora eklenmesi gerekn bilgiler burda eklenir.
+           -ExtentHtmlReporter ->sablonu projeye ekler. ropor ismi ve dokuman ismi icin kullanıyoruz
+           -ExtentTest -> raporlama islemini yapar.Logları rapora yazar.
+  3- BeforeClass oluştur ve
+  @BeforeClass
+  public static void extentReportsSetUp() {
+  Bunun içine: - report için path oluşturuyoruyruz.
+  - extentHtmlReporter ve extentReports objelerini oluşturuyoruz
+  - extentHtmlReporter’ın içine path’i koyuyoruz.Ve objeyi kullanarak ropor ismi ve dokuman ismi gibi bilgileri ekliyoruz.
+  -extentaraeports ile de sablom oluşturup rapora eklenmesi gereken bilgileri ekliyoruz. Eklemeler bitince raporu frameworke ekle yapıyoruz (DONE WITH CONFIGURATION (attach Reporter))
+  - “extentTest” ile de test objesi oluşturuyoruz.Test ismi ve isteğe bağlı açıklama koyulur.
+
+
+
+  4- @Test
+  public void extentReportsTest(){
+  Normak testimizi yazıp ,locate’leri alıp , her locate sonrası “extentTest.pass(“aldığımız locate ne yapıyorsa açıklama gibi bu parantez içine yazıyoruz)”
+  5- After class olusturmadan direkt "extentReports.flush();" kodunu testin sonuna da koyabiliriz. Fakat AfterClass oluşturup yapmak daha profesionel.
+
+     @AfterClass
+      public static void extentReportsTearDown(){
+  //        generating the report
+          extentReports.flush(); //kullanılması zorunludur
+      }
+
+
+  - “extentReports.flush(); “ kullanılması zorunludur.Raporun gözükmesi icin(test-output) ve kapatılması icin kullanılır.
+  6- Raporu nasıl acıyoruz?  intellj de solda test-output altındaki reports içindeki gelen raporun üstüne gel  mause sag click->Open in Brawser ->Chrome
+  WINDOWS'ta raporun üstüne gel  mause sag click-> Open in -> Browser => Chrome
+  **Repor folder nasıl açılır? Jıraya yüklemek için:
+                            MAC =>rapor sag tıkla =>Reveal in finder
+                             WINDOWS => rapor sag tıkla =>Open in => Explorer
+  NOT: Raporları jıraya yukleyebiliriz. Veya menager ile takım arkadasları ile paylasılabilir.
+      Bu raporları mail ile veya baska  bir sekilde baskasına gonderdiysek veya aldıysak, dosyayı
+      once bilgisayara indirip sonra browser(chrome) ile  acmalıyız. Yoksa html kodları gibi gorunur.
+****************************
+
+      EXCEL
+      ReadExcel
+   1- excel dosyasını koymak icin intellj'de package olustur:
+      test => java ,new package:resources
+   2- exel dosyasını projeye yükle:
+      Bilgisayarındaki exel dosyasını drag and drop (dosyayı tut ve bırak) resources package'nın icine.=>"refactor" bas
+   3- Intellj'e yuklenen excel dosyasının path'ini kopyala String icine koy:
+     (Store the path of the  file in a string))
+        String path = "./src/test/java/resources/Capitals.xlsx";
+//        ".\\src\\test\\java\\resources\\Capitals.xlsx" //WINDOWS
+  4-  "workbook>worksheet>row>cell"
+    5-     Open the file - Dosyayı ac
+          FileInputStream fileInputStream = new FileInputStream(path);
+    6-      Workbook workbook = WorkbookFactory.create(fileInputStream);
+    7-      Sheet sheet1 = workbook.getSheet("Sheet1");
+    8-      Row row1 = sheet1.getRow(0);
+    9-      Cell cell1 = row1.getCell(0);
+    10-     We can convert the cell data to string
+             String cell1Data = cell1.toString();
+             System.out.println(cell1Data);
+    11-     Find the number of row
+        *  int numberOfRow = sheet1.getLastRowNum()+1;//index starts at 0, so add 1 to find total number of row
+           System.out.println("ROW COUNT : "+numberOfRow); //11
+        *  int numberOfData = sheet1.getPhysicalNumberOfRows();//getPhysicalNumberOfRows(); index starts at 1. Returns the number of row that has a DATA
+NOT: Day11_ReadExcel classında tüm notlar.
+   ****
+     WriteTest
+     String path = "./src/test/java/resources/Capitals.xlsx";
+    FileInputStream fileInputStream = new FileInputStream(path);
+    Workbook workbook = WorkbookFactory.create(fileInputStream);
+    Sheet sheet1 = workbook.getSheet("Sheet1");
+    Row row1 = sheet1.getRow(0);
+    **Buraya kadar Excel icin diger sayfada yaptıklarımız ile aynı.Bunun icin kullanıslı method yapıp onu kullanmak daha iyi.
+    cunku tekrar tekrar kullanmamız gerektiginde daha kullanıslı olur tekrardan yazmaya gerek kalmaz
+
+   **excel tablosuna yeni veri ekleyecegiz,bunun icin yeni yeni sutun olusturacagız,ama sutun uzerinden calısmadıgı icin excel "cell" ekleyip,onun icine yazacagız veriyi
+     Cell r1c3 = row1.createCell(2); // createCell() ile yeni cell olusturduk, icine yazmak icin.
+     r1c3.setCellValue("POPULATION"); //setCellValue() methodu ile excel dosyasına cell'e deger ekliyoruz,yazıyoruz.
+     sheet1.getRow(1).createCell(2).setCellValue("150000");
+     sheet1.getRow(2).createCell(2).setCellValue("250000");
+     sheet1.getRow(3).createCell(2).setCellValue("54000");
+
+   ***Write and save the workbook(Kaydetme islemi "FileOutputStream" ile yapılır .)
+             FileOutputStream fileOutputStream =new FileOutputStream(path);
+             workbook.write(fileOutputStream);
+
+   ***"createCell()" ile cell olusturduk=> "setCellValue()" ile cellin icine deger koyduk =>FileOutputStream fileOutputStream =new FileOutputStream(path);
+            workbook.write() ile de yaptıklarımızı kaydettik.
+
+   ***Close the file
+             fileInputStream.close();
+             fileOutputStream.close();
+     //        Close the workbook
+             workbook.close();
+**************************
+           - JavaScript Executor-
+   Not:Javascript Executer'i web elelemntlerinin kontrollerini saglarken selenium komutları yetersiz kaldıgında kullanılır.
+      (click, belirli bir elemente scroll yapma,type,input^daki degerleri okuma...)
+      -Javascript HTML kodlarına direk erisip yönetebilen bir script dili oldugundan bize kolaylık saglar.
+ *What we can do with JS executor?
+ -Click. Especially good with clicking hidden element
+ -scroll onto specific elements, scroll the all the way –
+ -down/up/right/left Type in an input
+ -Change the value of an element
+ -Hover over
+ -Change the color, background color, add border
+
+
+           1. create js executor object ve "JavascriptExecutor"ı "driver"a cast yaptık aralarındaki iliskiden dolayı(interfase)
+      JavascriptExecutor js =(JavascriptExecutor)driver;
+
+        2. Kullaacagımız Webelementi'in locate et:
+        driver.findElement(By.xpath("//*[.='we offer']")));
+        3.Yapmak istedigin islemi js.executeScript'unu kullan.İcine parametre olarak ilgili script ve webelement'i yaz
+        js.executeScript("arguments[0].scrollIntoView(true);
+        ==>  js.executeScript("arguments[0].scrollIntoView(true);",driver.findElement(By.xpath("//*[.='we offer']")));
+
+      -  executeScript() methodu   JavascriptExecutor classından gelir.2 parametresi var.İlki "javaScript kodu" nu ikinci yazılan(webelement)e uygular.Run yapmada ise yarar.
+      - scrollIntoView(true) methodu belirli bir elemente scroll(kaydırmak) yapmak icin kullanilir.
+      - arguments[0] parandezdeki indexe yazılana gore elementi verir "scrollIntoView(true)"dan sonra 2 parametre yazdıysak;
+      - "arguments[0]" ilkini verir,"arguments[1]" ise ikincisini verir  , fakat genelde"0" yazılır cunku bir element bulmada
+        kullanılır. Baska bulmak istedigimiz element icin tekrardan "js.executeScript(...) olusturuyoruz.Bundan dolayı da reusable methot olusturup onu kullnmak daha mantıklı.
+      -"arguments" parametre demektir burda.
+     -  JavascriptExecutor classı seleniumdan gelir.
+     **
+     1- How you get the value of an input box?
+          We can js executor.
+       2- How?
+          I can get the element using js executor, and get the value of the element.
+          For example, I can get the element by id, and use value attribute to get the value of in an input
+         I have to do this, cause getText in this case does not return teh text in an input
+                   **
+
+       Normally we use element.click() method in selenium
+         When there is an issue with click()-hidden, different UI, ...
+         Then we can use javascript click that works better
+
+                             *********************
+     *What is javascript executor?
+     -js executor is an interface to execute javascript comments in selenium
+     *When did you use it?
+     -when we can not interact with some webelements with a traditional selenium methods
+     -For example, when we cannot click, scroll, get text... then we can use js executor
+     *How do you scroll with selenium?
+     -There are 2 ways: actions class, js executor
+     -Actually, I am using js executor, since it is better
+     -For example, with js executor, I can scroll to a specific element(scrollIntoView), or right, left, all the way
+     bottom,... We have a reusable method that I can call to scroll on a specific element
+     *How do you get the text in an input?
+     -I use getText() method for getting the text on a page. HOWEVER, we need to use jsexecutor to get the input value. I have a reusable method to get the value from an input.
+     *What would you do if your selenium click doesn’t work?
+     -I can use javascript executor click. I can get the element and click using javascript.
+
+**************************************
+ Day14_ExplicitWait
+ Day14_FluentWait
+ EXCEPTİON
+
+ ***************************
+            LOG4J
+   - Log4J bilgilerini console a yada bir dosyaya loglamak(yazdırmak) icin kullanılan bir API dir
+   System.out.println()konsola birseyler yazdırmak icin kullanıyoruz. LOG4J de System.out.println()ne benzer
+    NOT: log4j'i devoloperlar ekler projeye, testerlar degil.
+     - Dependencies leri ekliyoruz: 2 tane
+     -Create Logger object:
+  public static Logger logger = LogManager.getLogger(Day15_Log4J2.class.getName());
+      Logger class bir cok cesidi var. Biz  "org.apache.logging.log4j.Logger;"den import ediyoruz, cünkü apache'nın dependencies'lerini kullandık
+      "LogManager." de "org.apache.logging.log4j.LogManager;"den import ediyoruz.
+      -Use logger object to log/print information
+          logger.fatal("Fatal Log !!!");....
+      -Log4j configuration file ekleme:
+          1. Create a resources folder in the project level
+          2. Create a folder in project level : resources
+           Resources sag tık =>new => file :name: log4j2.xml
+
+          3. Create a log file under resources : log4j2.xml
+            log4j2.xml sag tıkla =>Mark drectory as => test resources rood
+
+          4. Add configuration in the file: https://logging.apache.org/log4j/2.x/manual/configuration.html 1.

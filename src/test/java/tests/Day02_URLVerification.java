@@ -13,7 +13,7 @@ public class Day02_URLVerification {
 	    3.Verify if google homepage url is “https://techproeducation.com/”
 	      Google ana sayfa url'sinin "https://techproeducation.com/" olduğunu doğrulayın
          */
-        System.setProperty("webdriver.chrome.driver", "./src/resources/drivers/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "./src/resources/drivers/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.techproeducation.com");
