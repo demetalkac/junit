@@ -40,7 +40,12 @@ public class Day08_WindowHandle2 extends TestBase {
 //        open techproeducation on window 1
         driver.get("https://www.techproeducation.com");
         String techProTitle = driver.getTitle();
-        Assert.assertTrue(techProTitle.contains("Techpro Education"));
+
+        Thread.sleep(3000);
+
+        Assert.assertTrue(techProTitle.contains("TechPro Education"));
+        Thread.sleep(3000);
+
         String techProHandle = driver.getWindowHandle();//getting window 1 id
         Thread.sleep(3000);
 //        open amazon on a new window 2
@@ -109,7 +114,7 @@ public class Day08_WindowHandle2 extends TestBase {
         //        open techproeducation on TAB 1
         driver.get("https://www.techproeducation.com");
         String techProTitle = driver.getTitle();
-        Assert.assertTrue(techProTitle.contains("Techpro Education"));
+        Assert.assertTrue(techProTitle.contains("TechPro Education"));
         String techProHandle = driver.getWindowHandle();//getting TAB 1 id
         Thread.sleep(3000);
 //        open amazon on a new window 2-TAB

@@ -28,7 +28,7 @@ Then verify the page title contains “Your Account”
 
         driver.findElement(By.linkText("Account")).click();
 //        Then verify the page title contains “Your Account”
-//       Then verify the page title contains “Your Account”
+
 
     }
 

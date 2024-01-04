@@ -53,10 +53,10 @@ public class Day03_Checkbox {
 //        Then verify that checkbox1 is checked.
         Assert.assertTrue(checkbox1.isSelected());
     }
-    @After
-    public void tearDown(){
-        driver.quit();
-    }
+  //  @After
+  //  public void tearDown(){
+  //      driver.quit();
+   // }
 
 
 

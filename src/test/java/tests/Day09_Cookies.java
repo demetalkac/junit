@@ -50,6 +50,7 @@ public class Day09_Cookies extends TestBase {
         Cookie cookie = new Cookie("my-fav-cookie","apple-pie"); //cookie olusturduk
         driver.manage().addCookie(cookie); //sayfaya yeni cookie ekledik
         Thread.sleep(2000);
+
 //        System.out.println("Yeni Cookie Sayısı"+driver.manage().getCookies().size()); //cookie ekledikten sonra yeni sayıyı bu sekildede gorebiliriz (yeni bir "set<cookie>" konteynerina koymadan da)
         Set<Cookie> newCookies = driver.manage().getCookies();
         System.out.println("New Number Of Cookie ===>>> "+newCookies.size());//1 more than original number of cookie-Orijinal çerez sayısından 1 fazla

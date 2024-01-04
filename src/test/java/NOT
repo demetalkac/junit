@@ -460,13 +460,14 @@ TEST DATA : username, password, URL, test environment, city, ssn,...
   clear() is used to delete the text is the elements
   --
   !!!!!!!!!!!***  How do you find the number of iframe on a page?
-  Sample Answer: iframes are created using iframe tag. I can use findElements by tag name that will return all of the element with iframe tags as List. Then I use size method to find the number of iframe in the list
+  Sample Answer: iframes are created using iframe tag. I can use findElements by tag name that will return all of
+  the element with iframe tags as List. Then I use size method to find the number of iframe in the list
   Alternatively, I can also use findElements with xpath like driver.findElements(By.xpath(“// iframe”)).size()
   Can you tell me the exact syntax?
   Sure. driver.findElements(By.tagName(“iframe”)).size();
 
   NOT:- Bir sayfada iframe olup olmadığını anlamak için sayfaya inspect yapıp, “// iframe” yazarak görebiliriz.
-  -Eger ıframe olan sayfada, ıframe icinde bir yeri "swichTo().fame()"" yapmadan locate etmeye
+  -Eger ıframe olan sayfada, ıframe icinde bir yeri "swichTo().frame()"" yapmadan locate etmeye
    calısırsak "noSuchElementEcseption" alırız.Önce switch yapmalıyız sonra locate etmeliyiz webelemennti.
 **************
        What might be the reason for your test case to fail?
@@ -574,7 +575,7 @@ TEST DATA : username, password, URL, test environment, city, ssn,...
   -Keyboard actions are keyUp, keyDown, sendKeys.
   -Keyboard actions can function as Shift,Ctrl, and Alt keys that is on the keyboard.
   -keysDown(); used to press and hold a key. Keys mean Shift,Ctrl, and Alt keys.
-  -keysUp();usedtoreleaseakeythatisalreadypressedafterkeysDown()method.WecanusekeysUp()after
+  -keysUp();used to release a key that is already pressed after keysDown()method.WecanusekeysUp()after
   -keysDown() method. Otherwise we may get IllegalArgumentException.
   -sendKeys(element,”text”); Used to type into text box, text area and so on.
 

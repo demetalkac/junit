@@ -77,9 +77,9 @@ public class Methodlar {
         // (new Point(15,15))-->icine "new Point" yazmalıyız,yani bunun yeni bir point oldugunu ostermis oluruz.
         driver.manage().window().setPosition(new Point(15,15));
 
-        //1d- driver.manage().window().setSize(new Dimansion(900,600)) -->
+        //1d- driver.manage().window().setSize(new Dimension(900,600)) -->
         //icinde oldugu sayfanın sol alt kosesini sabit olarak bizim yazacagımız olculere getirir.
-        //boyutunu da degistirebiliriz orn:setSize(new Dimansion(900,600))
+        //boyutunu da degistirebiliriz orn:setSize(new Dimension(900,600))
         driver.manage().window().setSize(new Dimension(900,600));
 
         //konumu ve boyutu yeniledikten sonra tekrar calıstırırsak
