@@ -52,5 +52,6 @@ public class Day10_AutoComplete extends TestBase {
         searchAndSelectFromList("an","Angola"); //TEST CASE 2
 
         searchAndSelectFromList("bah","Bahamas"); //TEST CASE 3
+        searchAndSelectFromList("tur","Turkey");
     }
 }

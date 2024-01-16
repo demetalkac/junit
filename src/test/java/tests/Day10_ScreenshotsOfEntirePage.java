@@ -75,7 +75,7 @@ public class Day10_ScreenshotsOfEntirePage extends TestBase {
    new File(System.getProperty("user.dir")+"/test-output/EkranGoruntuleri/image.png"));
 */
    //     -“QA” aramasi yap
-   driver.findElement(By.xpath("//input[@type='search']")).sendKeys("QA"+ Keys.ENTER);
+   driver.findElement(By.id("searchHeaderInput")).sendKeys("QA"+ Keys.ENTER);
 waitFor(3);
   String expected ="Search Results for: QA";
   String text = driver.findElement(By.xpath("//*contains(text(),'Search Rearch Results for')]")).getText();

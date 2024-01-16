@@ -653,7 +653,7 @@ Bir dosyanın bilgisayarda (desktop-masaüstünde) olup olmadığını görmrk i
         assertTrue(isExist); //Passes if file exist, Fails if files doesnt exists
   --------------
 Dosya Indirmek için-DOWNLOAD:
--driver.get(“url);
+-driver.get("url");
 - indireceğimiz elementin locate ediyoruz ve click() yapıyoruz.
 driver.findElement(By.partialLinkText("b10 all test cases")).click();
 - Dogrulamak için:
